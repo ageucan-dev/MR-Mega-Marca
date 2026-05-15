@@ -9,6 +9,7 @@ const products = [
   { title: "Kits Corporativos Personalizados", desc: "Combinações para clientes, colaboradores, eventos e ações comerciais.", bullets: ["Curadoria consultiva", "Combinações sob medida"], id: "btn-whatsapp-kits", category: "kits", image: "/images/produtos/kits-corporativos.jpg" },
   { title: "Camisetas e Uniformes Personalizados", desc: "Camisetas promocionais e uniformes para empresas e equipes.", bullets: ["Identidade visual forte", "Conforto e durabilidade"], id: "btn-whatsapp-camisetas", category: "camisetas", image: "/images/produtos/camisetas.jpg" },
   { title: "Sacochilas e Materiais para Eventos", desc: "Soluções para feiras, corridas, escolas e eventos corporativos.", bullets: ["Excelente para ativações", "Praticidade logística"], id: "btn-whatsapp-sacochilas", category: "sacochilas", image: "/images/produtos/sacochilas.jpg" },
+  { title: "Squeezes e Garrafas Personalizadas", desc: "Garrafas, squeezes e itens de uso diário para divulgar sua marca com alta visibilidade.", bullets: ["Uso recorrente", "Excelente para kits e eventos"], id: "btn-whatsapp-squeezes-garrafas", category: "squeezes-garrafas", image: "/images/produtos/squeezes-garrafas.jpg" },
   { title: "Canetas Personalizadas", desc: "Item acessível e efetivo para presença diária da sua marca.", bullets: ["Ótimo custo-benefício", "Alto volume"], id: "btn-whatsapp-canetas", category: "canetas", image: "/images/produtos/canetas.jpg" },
   { title: "Chaveiros Personalizados", desc: "Brindes úteis para relacionamento e lembrança constante da marca.", bullets: ["Duráveis", "Aplicação multissetorial"], id: "btn-whatsapp-chaveiros", category: "chaveiros", image: "/images/produtos/chaveiros.jpg" },
 ];
@@ -22,7 +23,7 @@ const faqItems = [
   ["Existe pedido mínimo?", "Sim. Varia conforme o produto e o tipo de personalização."],
   ["Preciso ter a arte pronta?", "Não. Se não tiver arte, orientamos a melhor forma de personalização."],
   ["Vocês atendem quais regiões?", "Atendemos todo o Brasil, conforme viabilidade do pedido."],
-  ["Quais produtos posso personalizar?", "Brindes, kits, camisetas, uniformes, canetas, chaveiros e outros materiais promocionais."],
+  ["Quais produtos posso personalizar?", "Brindes, kits, camisetas, uniformes, canetas, chaveiros, squeezes, garrafas e outros materiais promocionais."],
   ["Em quanto tempo recebo retorno?", "Com informações completas, o retorno costuma ser mais rápido."],
   ["Como recebo um orçamento mais preciso?", "Informe produto, quantidade, prazo, cidade/estado e se possui logo/arte."],
 ] as const;
