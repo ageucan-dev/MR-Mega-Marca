@@ -14,7 +14,6 @@ const products = [
   { title: "Chaveiros Personalizados", desc: "Brindes úteis para relacionamento e lembrança constante da marca.", bullets: ["Duráveis", "Aplicação multissetorial"], id: "btn-whatsapp-chaveiros", category: "chaveiros", image: "/images/produtos/chaveiros.jpg" },
 ];
 
-const benefits = ["Mais de 40 anos de tradição", "Qualidade dos materiais", "Atendimento consultivo", "Variedade de produtos", "Personalização sob medida", "Experiência com empresas e eventos", "Agilidade no atendimento", "Produção e curadoria conforme viabilidade"];
 const stats = ["40+ anos de mercado", "Empresas e eventos", "Personalização sob medida", "Todo o Brasil conforme viabilidade"];
 const audienceItems = ["Empresas e comércios", "Eventos e campanhas promocionais", "Equipes e colaboradores", "Escolas, clínicas e escritórios", "Associações, imobiliárias e seguradoras"];
 const steps = ["Escolha o produto que deseja personalizar", "Informe quantidade, prazo e cidade/estado", "Envie sua logo, arte ou referência", "Receba orientação e orçamento pelo WhatsApp"];
@@ -42,7 +41,7 @@ export default function Home() {
             <Image src="/images/logo-mr-mega-marca.png" alt="Logo MR & Mega Marca" width={300} height={92} className="h-auto w-[180px] max-w-full sm:w-[260px]" priority />
           </a>
           <nav className="hidden items-center gap-6 lg:flex">
-            {[["Produtos","produtos"],["Como Funciona","como-funciona"],["Diferenciais","diferenciais"],["Tradição","tradicao"],["FAQ","faq"]].map(([n,id]) => <a key={id} href={`#${id}`} className="text-sm font-semibold text-slate-700 hover:text-brandBlue">{n}</a>)}
+            {[["Produtos","produtos"],["Como Funciona","como-funciona"],["Tradição","tradicao"],["FAQ","faq"]].map(([n,id]) => <a key={id} href={`#${id}`} className="text-sm font-semibold text-slate-700 hover:text-brandBlue">{n}</a>)}
           </nav>
           <WhatsappButton id="btn-whatsapp-header" category="geral" label="Solicitar Orçamento" className="btn-primary shrink-0 px-4 py-3 text-xs sm:px-6 sm:text-sm" />
         </div>
@@ -70,21 +69,16 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="container-section grid gap-10 py-14 lg:grid-cols-2 lg:items-center lg:py-20">
-          <div>
+        <div className="container-section py-14 lg:py-20">
+          <div className="max-w-5xl">
             <p className="mb-4 inline-flex rounded-full bg-brandRed px-4 py-2 text-xs font-bold uppercase tracking-wide text-white">Primeira compra com condição especial</p>
             <h1 className="text-4xl font-black leading-tight sm:text-5xl lg:text-6xl" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>Brindes personalizados para empresas, eventos e ações promocionais</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-200">Canetas, chaveiros, camisetas, kits, sacochilas e materiais personalizados com atendimento consultivo, orçamento gratuito e a tradição de quem atua há mais de 40 anos no mercado.</p>
+            <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-200">Canetas, chaveiros, camisetas, kits, sacochilas e materiais personalizados com atendimento consultivo, orçamento gratuito e a tradição de quem atua há mais de 40 anos no mercado.</p>
             <div className="mt-6 flex flex-wrap gap-2">{["40+ anos de tradição","Orçamento gratuito","Atendimento pelo WhatsApp","Todo o Brasil"].map((b) => <span key={b} className="badge">{b}</span>)}</div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <WhatsappButton id="btn-whatsapp-hero" category="geral" label="Solicitar orçamento no WhatsApp" className="btn-primary" />
               <a href="#produtos" className="btn-secondary">Ver produtos em destaque</a>
             </div>
-          </div>
-          <div className="relative rounded-[2rem] border border-white/15 bg-white p-4 shadow-2xl shadow-black/20">
-            <Image src="/images/produtos/kits-corporativos.jpg" alt="Kits corporativos personalizados em destaque" width={1200} height={900} className="h-auto w-full rounded-[1.4rem] object-contain" />
-            <span className="absolute left-7 top-7 rounded-full bg-brandRed px-4 py-2 text-xs font-black text-white shadow-lg">40+ Anos</span>
-            <div className="absolute bottom-7 right-7 max-w-[78%] rounded-2xl bg-white px-4 py-3 text-slate-900 shadow-xl"><p className="text-sm font-bold">Orçamento rápido pelo WhatsApp</p></div>
           </div>
         </div>
       </section>
@@ -136,11 +130,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="diferenciais" className="container-section py-16 sm:py-20">
-        <h2 className="section-title">Por que empresas escolhem a MR & Mega Marca?</h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">{benefits.map((b)=><div key={b} className="card p-5 text-sm font-bold text-slate-900">{b}</div>)}</div>
-      </section>
-
       <section id="tradicao" className="bg-[#0D1E42] py-16 text-white sm:py-20">
         <div className="container-section grid gap-8 lg:grid-cols-2 lg:items-center">
           <div>
@@ -173,7 +162,7 @@ export default function Home() {
       <footer className="bg-slate-950 py-12 text-slate-300">
         <div className="container-section grid gap-8 md:grid-cols-2">
           <div><Image src="/images/logo-mr-mega-marca.png" alt="Logo MR & Mega Marca" width={260} height={80} className="h-auto w-[220px]" /><p className="mt-4 max-w-lg">Fornecedor de brindes e produtos personalizados para empresas, eventos e ações promocionais.</p></div>
-          <div className="text-sm"><p>WhatsApp: 35 3743 1554</p><p>Domínio: www.mrmegamarca.com.br</p><div className="mt-4 flex flex-wrap gap-4">{[["Produtos","produtos"],["Como Funciona","como-funciona"],["Diferenciais","diferenciais"],["FAQ","faq"],["Contato","contato"]].map(([n,id]) => <a key={id} href={`#${id}`} className="hover:text-white">{n}</a>)}</div><p className="mt-4 text-xs text-slate-500">© {new Date().getFullYear()} MR & Mega Marca. Todos os direitos reservados.</p></div>
+          <div className="text-sm"><p>WhatsApp: 35 3743 1554</p><p>Domínio: www.mrmegamarca.com.br</p><div className="mt-4 flex flex-wrap gap-4">{[["Produtos","produtos"],["Como Funciona","como-funciona"],["Tradição","tradicao"],["FAQ","faq"],["Contato","contato"]].map(([n,id]) => <a key={id} href={`#${id}`} className="hover:text-white">{n}</a>)}</div><p className="mt-4 text-xs text-slate-500">© {new Date().getFullYear()} MR & Mega Marca. Todos os direitos reservados.</p></div>
         </div>
       </footer>
 
