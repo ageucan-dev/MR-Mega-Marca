@@ -14,7 +14,12 @@ const products = [
   { title: "Chaveiros Personalizados", desc: "Brindes úteis para relacionamento e lembrança constante da marca.", bullets: ["Duráveis", "Aplicação multissetorial"], id: "btn-whatsapp-chaveiros", category: "chaveiros", image: "/images/produtos/chaveiros.jpg" },
 ];
 
-const stats = ["40+ anos de mercado", "Empresas e eventos", "Personalização sob medida", "Todo o Brasil conforme viabilidade"];
+const stats = [
+  { title: "40+ anos de mercado", desc: "Tradição em produtos personalizados." },
+  { title: "Empresas e eventos", desc: "Soluções para ações corporativas." },
+  { title: "Personalização sob medida", desc: "Orientação conforme objetivo e quantidade." },
+  { title: "Todo o Brasil", desc: "Atendimento conforme viabilidade logística." },
+];
 const audienceItems = ["Empresas e comércios", "Eventos e campanhas promocionais", "Equipes e colaboradores", "Escolas, clínicas e escritórios", "Associações, imobiliárias e seguradoras"];
 const steps = ["Escolha o produto que deseja personalizar", "Informe quantidade, prazo e cidade/estado", "Envie sua logo, arte ou referência", "Receba orientação e orçamento pelo WhatsApp"];
 const faqItems = [
@@ -84,7 +89,24 @@ export default function Home() {
       </section>
 
       <section className="bg-slate-50 py-8">
-        <div className="container-section grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{stats.map((s) => <div key={s} className="card px-4 py-5 text-center text-sm font-bold text-slate-900">{s}</div>)}</div>
+        <div className="container-section">
+          <div className="mb-3 flex items-center justify-between lg:hidden">
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Arraste para o lado</p>
+            <span className="text-xl text-green-600" aria-hidden="true">→</span>
+          </div>
+          <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 [-ms-overflow-style:none] [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-4 lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
+            {stats.map((s, index) => (
+              <article key={s.title} className="card flex min-h-[132px] min-w-[78%] snap-center flex-col justify-center px-5 py-6 text-left sm:min-w-[46%] lg:min-w-0 lg:text-center">
+                <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-green-600 text-sm font-black text-white lg:mx-auto">{index + 1}</span>
+                <h3 className="text-lg font-black leading-tight text-slate-950" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>{s.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{s.desc}</p>
+              </article>
+            ))}
+          </div>
+          <div className="mt-1 flex justify-center gap-2 lg:hidden" aria-hidden="true">
+            {stats.map((s) => <span key={`dot-${s.title}`} className="h-1.5 w-6 rounded-full bg-slate-300" />)}
+          </div>
+        </div>
       </section>
 
       <section id="produtos" className="container-section py-16 sm:py-20">
