@@ -21,6 +21,7 @@ const stats = [
   { title: "Personalização sob medida", desc: "Orientação conforme objetivo e quantidade." },
   { title: "Todo o Brasil", desc: "Atendimento conforme viabilidade logística." },
 ];
+
 const audienceItems = [
   {
     title: "Empresas e comércios",
@@ -48,7 +49,14 @@ const audienceItems = [
     examples: ["Imobiliárias", "Seguradoras", "Sindicatos", "Associações"],
   },
 ];
-const steps = ["Escolha o produto que deseja personalizar", "Informe quantidade, prazo e cidade/estado", "Envie sua logo, arte ou referência", "Receba orientação e orçamento pelo WhatsApp"];
+
+const steps = [
+  "Escolha o produto que deseja personalizar",
+  "Informe quantidade, prazo e cidade/estado",
+  "Envie sua logo, arte ou referência",
+  "Receba orientação e orçamento pelo WhatsApp",
+];
+
 const faqItems = [
   ["O orçamento é gratuito?", "Sim. O orçamento é gratuito e feito pelo WhatsApp."],
   ["Existe pedido mínimo?", "Sim. Varia conforme o produto e o tipo de personalização."],
@@ -73,7 +81,9 @@ export default function Home() {
             <Image src="/images/logo-mr-mega-marca.png" alt="Logo MR & Mega Marca" width={300} height={92} className="h-auto w-[180px] max-w-full sm:w-[260px]" priority />
           </a>
           <nav className="hidden items-center gap-6 lg:flex">
-            {[["Produtos","produtos"],["Como Funciona","como-funciona"],["Tradição","tradicao"],["FAQ","faq"]].map(([n,id]) => <a key={id} href={`#${id}`} className="text-sm font-semibold text-slate-700 hover:text-brandBlue">{n}</a>)}
+            {[["Produtos", "produtos"], ["Como Funciona", "como-funciona"], ["Tradição", "tradicao"], ["FAQ", "faq"]].map(([n, id]) => (
+              <a key={id} href={`#${id}`} className="text-sm font-semibold text-slate-700 hover:text-brandBlue">{n}</a>
+            ))}
           </nav>
           <WhatsappButton id="btn-whatsapp-header" category="geral" label="Solicitar Orçamento" className="btn-primary shrink-0 px-4 py-3 text-xs sm:px-6 sm:text-sm" />
         </div>
@@ -89,7 +99,7 @@ export default function Home() {
             <p className="mb-4 inline-flex rounded-full bg-brandRed px-4 py-2 text-xs font-bold uppercase tracking-wide text-white">Primeira compra com condição especial</p>
             <h1 className="text-3xl font-black leading-tight sm:text-4xl lg:text-5xl" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>Brindes personalizados para empresas, eventos e ações promocionais</h1>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-200">Canetas, chaveiros, camisetas, kits, sacochilas e materiais personalizados com atendimento consultivo, orçamento gratuito e a tradição de quem atua há mais de 40 anos no mercado.</p>
-            <div className="mt-6 flex flex-wrap gap-2">{["40+ anos de tradição","Orçamento gratuito","Atendimento pelo WhatsApp","Todo o Brasil"].map((b) => <span key={b} className="badge">{b}</span>)}</div>
+            <div className="mt-6 flex flex-wrap gap-2">{["40+ anos de tradição", "Orçamento gratuito", "Atendimento pelo WhatsApp", "Todo o Brasil"].map((b) => <span key={b} className="badge">{b}</span>)}</div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <WhatsappButton id="btn-whatsapp-hero" category="geral" label="Solicitar orçamento no WhatsApp" className="btn-primary" />
               <a href="#produtos" className="btn-secondary">Ver produtos em destaque</a>
@@ -143,7 +153,7 @@ export default function Home() {
         <div className="container-section">
           <h2 className="section-title-light">Faça seu orçamento e ganhe condição especial na primeira compra</h2>
           <p className="section-subtitle-light">Solicite seu orçamento gratuito pelo WhatsApp e receba orientação para escolher o melhor produto, quantidade e personalização para sua empresa ou evento.</p>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{["Orçamento gratuito","Desconto para primeira compra","Condição especial para empresas","Atendimento consultivo","Prazo promocional de 90 dias"].map((i)=><span key={i} className="rounded-2xl bg-white/15 px-4 py-3 text-sm font-bold text-white">{i}</span>)}</div>
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{["Orçamento gratuito", "Desconto para primeira compra", "Condição especial para empresas", "Atendimento consultivo", "Prazo promocional de 90 dias"].map((i) => <span key={i} className="rounded-2xl bg-white/15 px-4 py-3 text-sm font-bold text-white">{i}</span>)}</div>
           <div className="mt-8"><WhatsappButton id="btn-whatsapp-oferta" category="oferta" label="Quero minha condição especial" className="btn-primary" /></div>
         </div>
       </section>
@@ -152,7 +162,7 @@ export default function Home() {
         <div className="container-section grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <h2 className="section-title">Como solicitar seu orçamento</h2>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">{steps.map((s,i)=><div key={s} className="card p-5"><p className="text-sm font-bold text-brandRed">Passo {i+1}</p><p className="mt-2 font-bold leading-relaxed text-slate-900">{s}</p></div>)}</div>
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">{steps.map((s, i) => <div key={s} className="card p-5"><p className="text-sm font-bold text-brandRed">Passo {i + 1}</p><p className="mt-2 font-bold leading-relaxed text-slate-900">{s}</p></div>)}</div>
             <div className="mt-8"><WhatsappButton id="btn-whatsapp-como-funciona" category="geral" label="Começar orçamento agora" className="btn-primary" /></div>
           </div>
           <aside className="rounded-3xl bg-[#0D1E42] p-6 text-white shadow-xl">
@@ -167,7 +177,7 @@ export default function Home() {
           <div>
             <h2 className="section-title-light">Mais de 40 anos ajudando marcas a serem lembradas</h2>
             <p className="mt-5 text-lg leading-relaxed text-slate-200">A MR & Mega Marca carrega uma trajetória sólida no mercado de produtos personalizados, atendendo empresas, eventos e campanhas promocionais com foco em qualidade, confiança e personalização.</p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">{["40+ anos de mercado","Atendimento consultivo","Produtos para empresas, eventos e campanhas","Soluções personalizadas conforme necessidade"].map((n)=><div key={n} className="rounded-2xl bg-white/10 px-4 py-4 text-sm font-bold text-white">{n}</div>)}</div>
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">{["40+ anos de mercado", "Atendimento consultivo", "Produtos para empresas, eventos e campanhas", "Soluções personalizadas conforme necessidade"].map((n) => <div key={n} className="rounded-2xl bg-white/10 px-4 py-4 text-sm font-bold text-white">{n}</div>)}</div>
           </div>
           <div className="rounded-[2rem] bg-white p-4 shadow-2xl shadow-black/20">
             <Image src="/images/produtos/materiais-promocionais.jpg" alt="Materiais promocionais personalizados" width={1200} height={900} className="h-auto w-full rounded-[1.4rem] object-contain" />
@@ -193,9 +203,7 @@ export default function Home() {
                   <h3 className="text-xl font-black leading-tight text-slate-950" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>{item.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-slate-600">{item.desc}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
-                    {item.examples.map((example) => (
-                      <span key={example} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-700 transition group-hover:bg-green-50 group-hover:text-green-700">{example}</span>
-                    ))}
+                    {item.examples.map((example) => <span key={example} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-bold text-slate-700 transition group-hover:bg-green-50 group-hover:text-green-700">{example}</span>)}
                   </div>
                 </div>
               </article>
@@ -207,17 +215,30 @@ export default function Home() {
 
       <section id="faq" className="container-section py-16 sm:py-20">
         <h2 className="section-title">Perguntas Frequentes</h2>
-        <div className="mt-8 space-y-3">{faqItems.map(([q,a])=><details key={q} className="card p-5"><summary className="cursor-pointer text-base font-bold text-slate-950">{q}</summary><p className="mt-3 leading-relaxed text-slate-600">{a}</p></details>)}</div>
+        <div className="mt-8 space-y-3">{faqItems.map(([q, a]) => <details key={q} className="card p-5"><summary className="cursor-pointer text-base font-bold text-slate-950">{q}</summary><p className="mt-3 leading-relaxed text-slate-600">{a}</p></details>)}</div>
       </section>
 
       <section id="contato" className="bg-[#0D1E42] py-16 text-white sm:py-20">
         <div className="container-section text-center"><h2 className="section-title-light">Pronto para personalizar produtos para sua empresa?</h2><p className="mx-auto mt-4 max-w-2xl text-slate-200">Fale com a MR & Mega Marca pelo WhatsApp e receba uma orientação rápida para o seu orçamento.</p><div className="mt-8"><WhatsappButton id="btn-whatsapp-final" category="geral" label="Solicitar orçamento no WhatsApp" className="btn-primary" eventName="click_final_cta" /></div></div>
       </section>
 
-      <footer className="bg-slate-950 py-12 text-slate-300">
+      <footer className="border-t border-slate-200 bg-white py-12 text-slate-950">
         <div className="container-section grid gap-8 md:grid-cols-2">
-          <div><Image src="/images/logo-mr-mega-marca.png" alt="Logo MR & Mega Marca" width={260} height={80} className="h-auto w-[220px]" /><p className="mt-4 max-w-lg">Fornecedor de brindes e produtos personalizados para empresas, eventos e ações promocionais.</p></div>
-          <div className="text-sm"><p>WhatsApp: 35 3743 1554</p><p>Domínio: www.mrmegamarca.com.br</p><div className="mt-4 flex flex-wrap gap-4">{[["Produtos","produtos"],["Como Funciona","como-funciona"],["Tradição","tradicao"],["FAQ","faq"],["Contato","contato"]].map(([n,id]) => <a key={id} href={`#${id}`} className="hover:text-white">{n}</a>)}</div><p className="mt-4 text-xs text-slate-500">© {new Date().getFullYear()} MR & Mega Marca. Todos os direitos reservados.</p></div>
+          <div>
+            <Image src="/images/logo-mr-mega-marca.png" alt="Logo MR & Mega Marca" width={260} height={80} className="h-auto w-[220px]" />
+            <p className="mt-4 max-w-lg text-slate-700">Fornecedor de brindes e produtos personalizados para empresas, eventos e ações promocionais.</p>
+          </div>
+          <div className="text-sm text-slate-800">
+            <p><strong>WhatsApp:</strong> 35 3743 1554</p>
+            <p><strong>Domínio:</strong> www.mrmegamarca.com.br</p>
+            <p><strong>CNPJ:</strong> 09.633.083/0001-20</p>
+            <div className="mt-4 flex flex-wrap gap-4 font-semibold text-slate-900">
+              {[["Produtos", "produtos"], ["Como Funciona", "como-funciona"], ["Tradição", "tradicao"], ["FAQ", "faq"], ["Contato", "contato"]].map(([n, id]) => (
+                <a key={id} href={`#${id}`} className="hover:text-green-700">{n}</a>
+              ))}
+            </div>
+            <p className="mt-4 text-xs text-slate-500">© {new Date().getFullYear()} MR & Mega Marca. Todos os direitos reservados.</p>
+          </div>
         </div>
       </footer>
 
