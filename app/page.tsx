@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
+import { BannerCarousel } from "@/components/BannerCarousel";
 import { WhatsappButton } from "@/components/WhatsappButton";
 
 const products = [
@@ -78,28 +79,11 @@ export default function Home() {
         </div>
       </header>
 
-      <section id="top" className="bg-[#0D1E42] pt-24 text-white sm:pt-28">
-        <div className="border-b border-white/10 bg-gradient-to-r from-[#07142D] via-[#0D1E42] to-[#C8102E]">
-          <div className="container-section py-5">
-            <div className="grid gap-4 rounded-3xl border border-white/15 bg-white/10 p-5 shadow-2xl shadow-black/10 lg:grid-cols-[1.3fr_1fr] lg:items-center">
-              <div>
-                <p className="text-xs font-black uppercase tracking-[0.22em] text-green-300">Oferta progressiva</p>
-                <h2 className="mt-2 text-2xl font-black leading-tight sm:text-3xl" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>
-                  Quanto maior o pedido, melhor a condição para sua empresa.
-                </h2>
-                <p className="mt-2 max-w-3xl text-sm leading-relaxed text-slate-200 sm:text-base">
-                  Solicite seu orçamento pelo WhatsApp e consulte condições especiais para primeira compra, kits corporativos e pedidos em quantidade.
-                </p>
-              </div>
-              <div className="grid gap-2 text-sm font-bold sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
-                <span className="rounded-2xl bg-white px-4 py-3 text-slate-950">30+ unidades</span>
-                <span className="rounded-2xl bg-white px-4 py-3 text-slate-950">100+ unidades</span>
-                <span className="rounded-2xl bg-green-600 px-4 py-3 text-white">Condição especial</span>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="pt-20 sm:pt-24">
+        <BannerCarousel />
+      </div>
 
+      <section id="top" className="bg-[#0D1E42] text-white">
         <div className="container-section py-14 lg:py-20">
           <div className="max-w-5xl">
             <p className="mb-4 inline-flex rounded-full bg-brandRed px-4 py-2 text-xs font-bold uppercase tracking-wide text-white">Primeira compra com condição especial</p>
