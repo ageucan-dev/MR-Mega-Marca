@@ -67,6 +67,25 @@ const faqItems = [
   ["Como recebo um orçamento mais preciso?", "Informe produto, quantidade, prazo, cidade/estado e se possui logo/arte."],
 ] as const;
 
+const offerBenefits = [
+  {
+    title: "Orçamento gratuito",
+    desc: "Envie produto, quantidade e prazo para receber uma orientação inicial pelo WhatsApp.",
+  },
+  {
+    title: "Condição para primeira compra",
+    desc: "A equipe avalia a melhor condição conforme produto, quantidade e viabilidade do pedido.",
+  },
+  {
+    title: "Atendimento consultivo",
+    desc: "Receba ajuda para escolher o item, tipo de personalização e melhor aplicação para sua ação.",
+  },
+  {
+    title: "Prazo promocional de 90 dias",
+    desc: "Condição especial disponível por tempo limitado para novos orçamentos qualificados.",
+  },
+];
+
 export default function Home() {
   useEffect(() => {
     window.dataLayer = window.dataLayer || [];
@@ -149,12 +168,31 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-brandRed py-16 text-white sm:py-20">
-        <div className="container-section">
-          <h2 className="section-title-light">Faça seu orçamento e ganhe condição especial na primeira compra</h2>
-          <p className="section-subtitle-light">Solicite seu orçamento gratuito pelo WhatsApp e receba orientação para escolher o melhor produto, quantidade e personalização para sua empresa ou evento.</p>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">{["Orçamento gratuito", "Desconto para primeira compra", "Condição especial para empresas", "Atendimento consultivo", "Prazo promocional de 90 dias"].map((i) => <span key={i} className="rounded-2xl bg-white/15 px-4 py-3 text-sm font-bold text-white">{i}</span>)}</div>
-          <div className="mt-8"><WhatsappButton id="btn-whatsapp-oferta" category="oferta" label="Quero minha condição especial" className="btn-primary" /></div>
+      <section className="relative overflow-hidden bg-[#7F111B] py-10 text-white sm:py-14">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_34%),linear-gradient(135deg,rgba(13,30,66,0.38),transparent_55%)]" />
+        <div className="container-section relative">
+          <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <p className="mb-3 inline-flex rounded-full bg-white/12 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-white ring-1 ring-white/20">Condição especial</p>
+              <h2 className="max-w-2xl text-2xl font-black leading-tight sm:text-3xl lg:text-4xl" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>Faça seu orçamento sem compromisso</h2>
+              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-red-50 sm:text-base">Toque nos cards para entender os benefícios e peça uma orientação rápida pelo WhatsApp conforme produto, quantidade e prazo.</p>
+              <div className="mt-6 hidden lg:block"><WhatsappButton id="btn-whatsapp-oferta" category="oferta" label="Quero minha condição especial" className="btn-primary" /></div>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {offerBenefits.map((item, index) => (
+                <details key={item.title} className="group rounded-2xl border border-white/15 bg-white/10 p-4 shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-white/15 open:bg-white/15">
+                  <summary className="flex cursor-pointer list-none items-center justify-between gap-3 text-sm font-extrabold text-white [&::-webkit-details-marker]:hidden">
+                    <span className="flex items-center gap-3"><span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-xs font-black">{index + 1}</span>{item.title}</span>
+                    <span className="text-lg leading-none transition group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-red-50">{item.desc}</p>
+                </details>
+              ))}
+            </div>
+
+            <div className="lg:hidden"><WhatsappButton id="btn-whatsapp-oferta" category="oferta" label="Quero minha condição especial" className="btn-primary w-full" /></div>
+          </div>
         </div>
       </section>
 
