@@ -64,53 +64,55 @@ export function BannerCarousel() {
   };
 
   return (
-    <section aria-label="Ofertas em destaque" className="relative w-full overflow-hidden bg-white">
-      <div
-        className="flex transition-transform duration-700 ease-out"
-        style={{ transform: `translateX(-${activeBanner * 100}%)` }}
-      >
-        {banners.map((banner, index) => (
-          <a
-            key={banner.ctaId}
-            id={banner.ctaId}
-            href={buildWhatsAppUrl(banner.product)}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackBannerClick(banner)}
-            className="block min-w-full focus:outline-none focus:ring-4 focus:ring-green-400"
-            aria-label={`Solicitar orçamento no WhatsApp para ${banner.title}`}
-          >
-            <Image
-              src={banner.mobile}
-              alt={`${banner.title} - oferta especial para WhatsApp`}
-              width={360}
-              height={120}
-              className="block h-auto w-full object-cover sm:hidden"
-              sizes="100vw"
-              priority={index === 0}
-            />
-            <Image
-              src={banner.desktop}
-              alt={`${banner.title} - oferta especial para WhatsApp`}
-              width={1200}
-              height={400}
-              className="hidden h-auto w-full object-cover sm:block"
-              sizes="100vw"
-              priority={index === 0}
-            />
-          </a>
-        ))}
+    <section aria-label="Ofertas em destaque" className="w-full overflow-hidden bg-white">
+      <div className="relative w-full overflow-hidden">
+        <div
+          className="flex transition-transform duration-700 ease-out"
+          style={{ transform: `translateX(-${activeBanner * 100}%)` }}
+        >
+          {banners.map((banner, index) => (
+            <a
+              key={banner.ctaId}
+              id={banner.ctaId}
+              href={buildWhatsAppUrl(banner.product)}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackBannerClick(banner)}
+              className="block min-w-full focus:outline-none focus:ring-4 focus:ring-green-400"
+              aria-label={`Solicitar orçamento no WhatsApp para ${banner.title}`}
+            >
+              <Image
+                src={banner.mobile}
+                alt={`${banner.title} - oferta especial para WhatsApp`}
+                width={360}
+                height={120}
+                className="block h-auto w-full object-cover sm:hidden"
+                sizes="100vw"
+                priority={index === 0}
+              />
+              <Image
+                src={banner.desktop}
+                alt={`${banner.title} - oferta especial para WhatsApp`}
+                width={1200}
+                height={400}
+                className="hidden h-auto w-full object-cover sm:block"
+                sizes="100vw"
+                priority={index === 0}
+              />
+            </a>
+          ))}
+        </div>
       </div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-2 flex justify-center gap-2 sm:bottom-4">
+      <div className="flex items-center justify-center gap-2 bg-white py-3 shadow-sm sm:py-4">
         {banners.map((banner, index) => (
           <button
             key={`indicator-${banner.ctaId}`}
             type="button"
             aria-label={`Ver banner ${index + 1}: ${banner.title}`}
             onClick={() => setActiveBanner(index)}
-            className={`pointer-events-auto h-2.5 rounded-full border border-white/80 transition-all sm:h-3 ${
-              activeBanner === index ? "w-8 bg-green-500" : "w-3 bg-white/70"
+            className={`h-2.5 rounded-full transition-all sm:h-3 ${
+              activeBanner === index ? "w-8 bg-green-600" : "w-3 bg-slate-300 hover:bg-slate-400"
             }`}
           />
         ))}
