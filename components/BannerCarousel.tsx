@@ -20,7 +20,7 @@ const banners: Banner[] = [
     category: "mochila-saco",
     ctaId: "btn-whatsapp-banner-mochila-saco",
     desktop: "/images/banners/banner-mochila-saco-desktop.png",
-    mobile: "/images/banners/banner-mochila-saco-mobile.png",
+    mobile: "/images/banners/banner-mochila-saco-mobile.png?v=2",
   },
   {
     title: "Calendário de Mesa Personalizado",
@@ -28,7 +28,7 @@ const banners: Banner[] = [
     category: "calendario-mesa",
     ctaId: "btn-whatsapp-banner-calendario-mesa",
     desktop: "/images/banners/banner-calendario-mesa-desktop.png",
-    mobile: "/images/banners/banner-calendario-mesa-mobile.png",
+    mobile: "/images/banners/banner-calendario-mesa-mobile.png?v=2",
   },
   {
     title: "Caneta Personalizada",
@@ -36,7 +36,7 @@ const banners: Banner[] = [
     category: "canetas",
     ctaId: "btn-whatsapp-banner-caneta-personalizada",
     desktop: "/images/banners/banner-caneta-personalizada-desktop.png",
-    mobile: "/images/banners/banner-caneta-personalizada-mobile.png",
+    mobile: "/images/banners/banner-caneta-personalizada-mobile.png?v=2",
   },
 ];
 
@@ -84,8 +84,8 @@ export function BannerCarousel() {
               <Image
                 src={banner.mobile}
                 alt={`${banner.title} - oferta especial para WhatsApp`}
-                width={1024}
-                height={1024}
+                width={1080}
+                height={1080}
                 className="block aspect-square w-full object-cover sm:hidden"
                 sizes="100vw"
                 priority={index === 0}
