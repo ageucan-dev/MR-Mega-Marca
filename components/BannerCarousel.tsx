@@ -64,8 +64,8 @@ export function BannerCarousel() {
   };
 
   return (
-    <section aria-label="Ofertas em destaque" className="w-full overflow-hidden bg-white">
-      <div className="relative w-full overflow-hidden">
+    <section aria-label="Ofertas em destaque" className="w-full overflow-hidden bg-[#0D1E42]">
+      <div className="relative w-full overflow-hidden bg-white">
         <div
           className="flex transition-transform duration-700 ease-out"
           style={{ transform: `translateX(-${activeBanner * 100}%)` }}
@@ -104,15 +104,15 @@ export function BannerCarousel() {
         </div>
       </div>
 
-      <div className="flex items-center justify-center gap-2 bg-white py-3 shadow-sm sm:py-4">
+      <div className="flex items-center justify-center gap-2 bg-[#0D1E42] py-2 sm:py-3">
         {banners.map((banner, index) => (
           <button
             key={`indicator-${banner.ctaId}`}
             type="button"
             aria-label={`Ver banner ${index + 1}: ${banner.title}`}
             onClick={() => setActiveBanner(index)}
-            className={`h-2.5 rounded-full transition-all sm:h-3 ${
-              activeBanner === index ? "w-8 bg-green-600" : "w-3 bg-slate-300 hover:bg-slate-400"
+            className={`h-2 rounded-full transition-all sm:h-2.5 ${
+              activeBanner === index ? "w-8 bg-green-500" : "w-3 bg-white/35 hover:bg-white/60"
             }`}
           />
         ))}
