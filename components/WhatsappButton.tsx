@@ -36,7 +36,7 @@ export function WhatsappButton({ id, category, label, product, className = "", e
       >
         <span className="absolute inset-x-2 -bottom-1 h-4 rounded-full bg-black/25 blur-md transition group-hover:bg-black/30" aria-hidden="true" />
         <Image
-          src="/images/whatsApp.png"
+          src="/images/whatsapp.png"
           alt="WhatsApp"
           width={96}
           height={96}
