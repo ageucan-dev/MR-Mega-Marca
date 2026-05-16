@@ -132,17 +132,17 @@ export default function Home() {
       <section id="produtos" className="container-section py-16 sm:py-20">
         <h2 className="section-title">Escolha o produto ideal para personalizar sua marca</h2>
         <p className="section-subtitle">Categorias pensadas para empresas, equipes, eventos e ações promocionais.</p>
-        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
-            <article key={p.id} className="card card-hover overflow-hidden">
+            <article key={p.id} className="card card-hover flex h-full flex-col overflow-hidden">
               <div className="flex h-64 items-center justify-center bg-slate-50 p-3">
                 <Image src={p.image} alt={p.title} width={1200} height={900} className="max-h-full w-full object-contain" />
               </div>
-              <div className="p-5 sm:p-6">
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <h3 className="text-xl font-extrabold text-slate-950" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>{p.title}</h3>
                 <p className="mt-3 leading-relaxed text-slate-600">{p.desc}</p>
                 <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-slate-600">{p.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
-                <div className="mt-6"><WhatsappButton id={p.id} category={p.category} label="Orçar agora" product={p.title} className="btn-primary w-full" eventName="click_product_card" /></div>
+                <div className="mt-auto pt-6"><WhatsappButton id={p.id} category={p.category} label="Orçar agora" product={p.title} className="btn-primary w-full" eventName="click_product_card" /></div>
               </div>
             </article>
           ))}
