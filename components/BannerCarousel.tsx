@@ -84,9 +84,9 @@ export function BannerCarousel() {
               <Image
                 src={banner.mobile}
                 alt={`${banner.title} - oferta especial para WhatsApp`}
-                width={360}
-                height={120}
-                className="block h-auto w-full object-cover sm:hidden"
+                width={1024}
+                height={1024}
+                className="block aspect-square w-full object-cover sm:hidden"
                 sizes="100vw"
                 priority={index === 0}
               />
