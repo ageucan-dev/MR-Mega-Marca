@@ -142,7 +142,7 @@ export default function Home() {
                 <h3 className="text-xl font-extrabold text-slate-950" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>{p.title}</h3>
                 <p className="mt-3 leading-relaxed text-slate-600">{p.desc}</p>
                 <ul className="mt-4 list-disc space-y-1 pl-5 text-sm text-slate-600">{p.bullets.map((b) => <li key={b}>{b}</li>)}</ul>
-                <div className="mt-auto pt-6"><WhatsappButton id={p.id} category={p.category} label="Orçar agora" product={p.title} className="btn-primary w-full" eventName="click_product_card" /></div>
+                <div className="mt-auto pt-6"><WhatsappButton id={p.id} category={p.category} label="Fazer orçamento agora" product={p.title} className="btn-primary w-full" eventName="click_product_card" /></div>
               </div>
             </article>
           ))}
