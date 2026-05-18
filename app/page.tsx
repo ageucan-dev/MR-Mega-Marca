@@ -165,8 +165,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="como-funciona" className="bg-slate-50 py-16 sm:py-20">
-        <div className="container-section grid gap-8 lg:grid-cols-3">
+      <section id="como-funciona" className="bg-slate-50 pt-12 pb-8 sm:pt-16 sm:pb-10">
+        <div className="container-section grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <h2 className="section-title">Como solicitar seu orçamento</h2>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">{steps.map((s, i) => <div key={s} className="card p-5"><p className="text-sm font-bold text-brandRed">Passo {i + 1}</p><p className="mt-2 font-bold leading-relaxed text-slate-900">{s}</p></div>)}</div>
@@ -179,8 +179,8 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-slate-50 py-16 sm:py-20" aria-label="Segmentos atendidos">
-        <div className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-green-400/10 blur-3xl" />
+      <section className="relative overflow-hidden bg-slate-50 pt-8 pb-16 sm:pt-10 sm:pb-20" aria-label="Segmentos atendidos">
+        <div className="absolute left-1/2 top-6 h-72 w-72 -translate-x-1/2 rounded-full bg-green-400/10 blur-3xl" />
         <div className="container-section relative">
           <div className="max-w-3xl">
             <p className="text-xs font-black uppercase tracking-[0.22em] text-green-600">Segmentos atendidos</p>
