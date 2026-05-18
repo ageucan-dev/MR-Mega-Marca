@@ -118,7 +118,6 @@ export default function Home() {
             <p className="mb-4 inline-flex rounded-full bg-brandRed px-4 py-2 text-xs font-bold uppercase tracking-wide text-white">Primeira compra com condição especial</p>
             <h1 className="text-3xl font-black leading-tight sm:text-4xl lg:text-5xl" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>Brindes personalizados para empresas, eventos e ações promocionais</h1>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-200">Canetas, chaveiros, camisetas, kits, sacochilas e materiais personalizados com atendimento consultivo, orçamento gratuito e a tradição de quem atua há mais de 40 anos no mercado.</p>
-            <div className="mt-6 flex flex-wrap gap-2">{["40+ anos de tradição", "Orçamento gratuito", "Atendimento pelo WhatsApp", "Todo o Brasil"].map((b) => <span key={b} className="badge">{b}</span>)}</div>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <WhatsappButton id="btn-whatsapp-hero" category="geral" label="Solicitar orçamento no WhatsApp" className="btn-primary" />
               <a href="#produtos" className="btn-secondary">Ver produtos em destaque</a>
