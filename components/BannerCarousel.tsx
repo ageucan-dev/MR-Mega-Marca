@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 type Banner = {
@@ -42,14 +42,52 @@ const banners: Banner[] = [
 
 export function BannerCarousel() {
   const [activeBanner, setActiveBanner] = useState(0);
+  const touchStartX = useRef<number | null>(null);
+  const touchDeltaX = useRef(0);
+  const wasSwiping = useRef(false);
+
+  const goToNext = () => {
+    setActiveBanner((current) => (current + 1) % banners.length);
+  };
+
+  const goToPrevious = () => {
+    setActiveBanner((current) => (current - 1 + banners.length) % banners.length);
+  };
 
   useEffect(() => {
-    const interval = window.setInterval(() => {
-      setActiveBanner((current) => (current + 1) % banners.length);
-    }, 5000);
+    const interval = window.setInterval(goToNext, 5000);
 
     return () => window.clearInterval(interval);
   }, []);
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = event.touches[0].clientX;
+    touchDeltaX.current = 0;
+    wasSwiping.current = false;
+  };
+
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    if (touchStartX.current === null) return;
+
+    touchDeltaX.current = event.touches[0].clientX - touchStartX.current;
+
+    if (Math.abs(touchDeltaX.current) > 12) {
+      wasSwiping.current = true;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    if (Math.abs(touchDeltaX.current) > 45) {
+      if (touchDeltaX.current < 0) {
+        goToNext();
+      } else {
+        goToPrevious();
+      }
+    }
+
+    touchStartX.current = null;
+    touchDeltaX.current = 0;
+  };
 
   const trackBannerClick = (banner: Banner) => {
     if (typeof window !== "undefined") {
@@ -65,7 +103,29 @@ export function BannerCarousel() {
 
   return (
     <section aria-label="Ofertas em destaque" className="w-full overflow-hidden bg-[#0D1E42]">
-      <div className="relative w-full overflow-hidden bg-white">
+      <div
+        className="relative w-full overflow-hidden bg-white"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
+        <button
+          type="button"
+          aria-label="Banner anterior"
+          onClick={goToPrevious}
+          className="absolute left-5 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-slate-950/45 text-3xl font-bold text-white shadow-lg backdrop-blur transition hover:bg-slate-950/65 sm:flex"
+        >
+          ‹
+        </button>
+        <button
+          type="button"
+          aria-label="Próximo banner"
+          onClick={goToNext}
+          className="absolute right-5 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-slate-950/45 text-3xl font-bold text-white shadow-lg backdrop-blur transition hover:bg-slate-950/65 sm:flex"
+        >
+          ›
+        </button>
+
         <div
           className="flex transition-transform duration-700 ease-out"
           style={{ transform: `translateX(-${activeBanner * 100}%)` }}
@@ -77,7 +137,15 @@ export function BannerCarousel() {
               href={buildWhatsAppUrl(banner.product)}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackBannerClick(banner)}
+              onClick={(event) => {
+                if (wasSwiping.current) {
+                  event.preventDefault();
+                  wasSwiping.current = false;
+                  return;
+                }
+
+                trackBannerClick(banner);
+              }}
               className="block min-w-full focus:outline-none focus:ring-4 focus:ring-green-400"
               aria-label={`Solicitar orçamento no WhatsApp para ${banner.title}`}
             >
