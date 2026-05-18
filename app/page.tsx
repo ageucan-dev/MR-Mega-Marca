@@ -57,8 +57,9 @@ const offerBenefits = [
 
 export default function Home() {
   useEffect(() => {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: "view_product_section", section: "produtos" });
+    const w = window as Window & { dataLayer?: Array<Record<string, string>> };
+    w.dataLayer = w.dataLayer || [];
+    w.dataLayer.push({ event: "view_product_section", section: "produtos" });
   }, []);
 
   return (
