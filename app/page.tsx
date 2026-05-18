@@ -219,6 +219,24 @@ export default function Home() {
           <div>
             <Image src="/images/logo-mr-mega-marca.png" alt="Logo MR & Mega Marca" width={260} height={80} className="h-auto w-[220px]" />
             <p className="mt-4 max-w-lg text-slate-700">Fornecedor de brindes e produtos personalizados para empresas, eventos e ações promocionais.</p>
+            <div className="mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-sm">
+              <iframe
+                title="Localização da Mega Marca no Google Maps"
+                src="https://www.google.com/maps?q=-21.7041768,-46.2528365&z=16&output=embed"
+                className="h-56 w-full border-0 sm:h-64"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+            <a
+              href="https://maps.app.goo.gl/WfBRajnkMXNdayLn8"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-700"
+            >
+              Abrir localização no Google Maps
+            </a>
           </div>
           <div className="text-sm text-slate-800">
             <p><strong>WhatsApp:</strong> 35 3743 1554</p>
