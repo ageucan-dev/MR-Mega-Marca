@@ -23,31 +23,11 @@ const stats = [
 ];
 
 const audienceItems = [
-  {
-    title: "Empresas e comércios",
-    desc: "Brindes e materiais para relacionamento, divulgação local e presença de marca no dia a dia.",
-    examples: ["Lojas", "Supermercados", "Clínicas", "Escritórios"],
-  },
-  {
-    title: "Eventos e campanhas promocionais",
-    desc: "Produtos para ações presenciais, ativações, feiras, corridas e campanhas sazonais.",
-    examples: ["Corridas", "Feiras", "Lançamentos", "Datas comemorativas"],
-  },
-  {
-    title: "Equipes e colaboradores",
-    desc: "Uniformes, kits internos e itens de reconhecimento para fortalecer identidade e pertencimento.",
-    examples: ["Uniformes", "Onboarding", "Kits internos", "Treinamentos"],
-  },
-  {
-    title: "Escolas, clínicas e escritórios",
-    desc: "Materiais personalizados para relacionamento, organização, campanhas internas e fidelização.",
-    examples: ["Escolas", "Consultórios", "Advocacias", "Contabilidades"],
-  },
-  {
-    title: "Associações, imobiliárias e seguradoras",
-    desc: "Brindes úteis e duráveis para gerar lembrança de marca e fortalecer o contato com clientes.",
-    examples: ["Imobiliárias", "Seguradoras", "Sindicatos", "Associações"],
-  },
+  { title: "Empresas e comércios", desc: "Brindes e materiais para relacionamento, divulgação local e presença de marca no dia a dia.", examples: ["Lojas", "Supermercados", "Clínicas", "Escritórios"] },
+  { title: "Eventos e campanhas promocionais", desc: "Produtos para ações presenciais, ativações, feiras, corridas e campanhas sazonais.", examples: ["Corridas", "Feiras", "Lançamentos", "Datas comemorativas"] },
+  { title: "Equipes e colaboradores", desc: "Uniformes, kits internos e itens de reconhecimento para fortalecer identidade e pertencimento.", examples: ["Uniformes", "Onboarding", "Kits internos", "Treinamentos"] },
+  { title: "Escolas, clínicas e escritórios", desc: "Materiais personalizados para relacionamento, organização, campanhas internas e fidelização.", examples: ["Escolas", "Consultórios", "Advocacias", "Contabilidades"] },
+  { title: "Associações, imobiliárias e seguradoras", desc: "Brindes úteis e duráveis para gerar lembrança de marca e fortalecer o contato com clientes.", examples: ["Imobiliárias", "Seguradoras", "Sindicatos", "Associações"] },
 ];
 
 const steps = [
@@ -68,22 +48,10 @@ const faqItems = [
 ] as const;
 
 const offerBenefits = [
-  {
-    title: "Orçamento gratuito",
-    desc: "Envie produto, quantidade e prazo para receber uma orientação inicial pelo WhatsApp.",
-  },
-  {
-    title: "Condição para primeira compra",
-    desc: "A equipe avalia a melhor condição conforme produto, quantidade e viabilidade do pedido.",
-  },
-  {
-    title: "Atendimento consultivo",
-    desc: "Receba ajuda para escolher o item, tipo de personalização e melhor aplicação para sua ação.",
-  },
-  {
-    title: "Prazo promocional de 90 dias",
-    desc: "Condição especial disponível por tempo limitado para novos orçamentos qualificados.",
-  },
+  { title: "Orçamento gratuito", desc: "Envie produto, quantidade e prazo para receber uma orientação inicial pelo WhatsApp." },
+  { title: "Condição para primeira compra", desc: "A equipe avalia a melhor condição conforme produto, quantidade e viabilidade do pedido." },
+  { title: "Atendimento consultivo", desc: "Receba ajuda para escolher o item, tipo de personalização e melhor aplicação para sua ação." },
+  { title: "Prazo promocional de 90 dias", desc: "Condição especial disponível por tempo limitado para novos orçamentos qualificados." },
 ];
 
 export default function Home() {
@@ -100,7 +68,7 @@ export default function Home() {
             <Image src="/images/logo-mr-mega-marca.png" alt="Logo MR & Mega Marca" width={300} height={92} className="h-auto w-[180px] max-w-full sm:w-[260px]" priority />
           </a>
           <nav className="hidden items-center gap-6 lg:flex">
-            {[["Produtos", "produtos"], ["Como Funciona", "como-funciona"], ["Tradição", "tradicao"], ["FAQ", "faq"]].map(([n, id]) => (
+            {[["Produtos", "produtos"], ["Como Funciona", "como-funciona"], ["FAQ", "faq"]].map(([n, id]) => (
               <a key={id} href={`#${id}`} className="text-sm font-semibold text-slate-700 hover:text-brandBlue">{n}</a>
             ))}
           </nav>
@@ -209,19 +177,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="tradicao" className="bg-[#0D1E42] py-16 text-white sm:py-20">
-        <div className="container-section grid gap-8 lg:grid-cols-2 lg:items-center">
-          <div>
-            <h2 className="section-title-light">Mais de 40 anos ajudando marcas a serem lembradas</h2>
-            <p className="mt-5 text-lg leading-relaxed text-slate-200">A MR & Mega Marca carrega uma trajetória sólida no mercado de produtos personalizados, atendendo empresas, eventos e campanhas promocionais com foco em qualidade, confiança e personalização.</p>
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">{["40+ anos de mercado", "Atendimento consultivo", "Produtos para empresas, eventos e campanhas", "Soluções personalizadas conforme necessidade"].map((n) => <div key={n} className="rounded-2xl bg-white/10 px-4 py-4 text-sm font-bold text-white">{n}</div>)}</div>
-          </div>
-          <div className="rounded-[2rem] bg-white p-4 shadow-2xl shadow-black/20">
-            <Image src="/images/produtos/materiais-promocionais.jpg" alt="Materiais promocionais personalizados" width={1200} height={900} className="h-auto w-full rounded-[1.4rem] object-contain" />
-          </div>
-        </div>
-      </section>
-
       <section className="relative overflow-hidden bg-slate-50 py-16 sm:py-20">
         <div className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-green-400/10 blur-3xl" />
         <div className="container-section relative">
@@ -270,7 +225,7 @@ export default function Home() {
             <p><strong>Domínio:</strong> www.mrmegamarca.com.br</p>
             <p><strong>CNPJ:</strong> 09.633.083/0001-20</p>
             <div className="mt-4 flex flex-wrap gap-4 font-semibold text-slate-900">
-              {[["Produtos", "produtos"], ["Como Funciona", "como-funciona"], ["Tradição", "tradicao"], ["FAQ", "faq"], ["Contato", "contato"]].map(([n, id]) => (
+              {[["Produtos", "produtos"], ["Como Funciona", "como-funciona"], ["FAQ", "faq"], ["Contato", "contato"]].map(([n, id]) => (
                 <a key={id} href={`#${id}`} className="hover:text-green-700">{n}</a>
               ))}
             </div>
@@ -279,7 +234,7 @@ export default function Home() {
         </div>
       </footer>
 
-      <div className="fixed bottom-5 right-5 z-50"><WhatsappButton id="btn-whatsapp-flutuante" category="geral" label="WhatsApp" className="btn-primary rounded-full px-5 py-3 shadow-2xl" /></div>
+      <div className="fixed bottom-5 right-5 z-50"><WhatsappButton id="btn-whatsapp-flutuante" category="geral" label="WhatsApp" /></div>
     </main>
   );
 }
