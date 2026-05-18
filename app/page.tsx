@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import { BannerCarousel } from "@/components/BannerCarousel";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { WhatsappButton } from "@/components/WhatsappButton";
 
 const products = [
@@ -62,12 +63,13 @@ export default function Home() {
 
   return (
     <main className="overflow-hidden">
+      <SeoJsonLd />
       <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200 bg-white/95 shadow-sm backdrop-blur">
         <div className="container-section flex h-20 items-center justify-between gap-3 sm:h-24">
           <a href="#top" className="min-w-0 flex-1 sm:flex-none">
-            <Image src="/images/logo-mr-mega-marca.png" alt="Logo MR & Mega Marca" width={300} height={92} className="h-auto w-[180px] max-w-full sm:w-[260px]" priority />
+            <Image src="/images/logo-mr-mega-marca.png" alt="MR & Mega Marca - brindes personalizados e impressão digital" width={300} height={92} className="h-auto w-[180px] max-w-full sm:w-[260px]" priority />
           </a>
-          <nav className="hidden items-center gap-6 lg:flex">
+          <nav className="hidden items-center gap-6 lg:flex" aria-label="Menu principal">
             {[["Produtos", "produtos"], ["Como Funciona", "como-funciona"], ["FAQ", "faq"]].map(([n, id]) => (
               <a key={id} href={`#${id}`} className="text-sm font-semibold text-slate-700 hover:text-brandBlue">{n}</a>
             ))}
@@ -94,7 +96,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-slate-50 py-8">
+      <section className="bg-slate-50 py-8" aria-label="Diferenciais da MR & Mega Marca">
         <div className="container-section">
           <div className="mb-3 flex items-center justify-between lg:hidden">
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-slate-500">Arraste para o lado</p>
@@ -104,7 +106,7 @@ export default function Home() {
             {stats.map((s, index) => (
               <article key={s.title} className="card flex min-h-[132px] min-w-[78%] snap-center flex-col justify-center px-5 py-6 text-left sm:min-w-[46%] lg:min-w-0 lg:text-center">
                 <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-full bg-green-600 text-sm font-black text-white lg:mx-auto">{index + 1}</span>
-                <h3 className="text-lg font-black leading-tight text-slate-950" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>{s.title}</h3>
+                <h2 className="text-lg font-black leading-tight text-slate-950" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>{s.title}</h2>
                 <p className="mt-2 text-sm leading-relaxed text-slate-600">{s.desc}</p>
               </article>
             ))}
@@ -122,7 +124,7 @@ export default function Home() {
           {products.map((p) => (
             <article key={p.id} className="card card-hover flex h-full flex-col overflow-hidden">
               <div className="flex h-64 items-center justify-center bg-slate-50 p-3">
-                <Image src={p.image} alt={p.title} width={1200} height={900} className="max-h-full w-full object-contain" />
+                <Image src={p.image} alt={`${p.title} - produto personalizado para empresas e eventos`} width={1200} height={900} className="max-h-full w-full object-contain" />
               </div>
               <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <h3 className="text-xl font-extrabold text-slate-950" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>{p.title}</h3>
@@ -135,7 +137,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#7F111B] py-10 text-white sm:py-14">
+      <section className="relative overflow-hidden bg-[#7F111B] py-10 text-white sm:py-14" aria-label="Condição especial de orçamento">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_34%),linear-gradient(135deg,rgba(13,30,66,0.38),transparent_55%)]" />
         <div className="container-section relative">
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -171,13 +173,13 @@ export default function Home() {
             <div className="mt-8"><WhatsappButton id="btn-whatsapp-como-funciona" category="geral" label="Começar orçamento agora" className="btn-primary" /></div>
           </div>
           <aside className="rounded-3xl bg-[#0D1E42] p-6 text-white shadow-xl">
-            <h3 className="text-2xl font-black" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>Para agilizar seu atendimento</h3>
+            <h2 className="text-2xl font-black" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>Para agilizar seu atendimento</h2>
             <p className="mt-4 leading-relaxed text-slate-200">Envie pelo WhatsApp: produto desejado, quantidade, prazo, cidade/estado e se já possui logo ou arte.</p>
           </aside>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-slate-50 py-16 sm:py-20">
+      <section className="relative overflow-hidden bg-slate-50 py-16 sm:py-20" aria-label="Segmentos atendidos">
         <div className="absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-green-400/10 blur-3xl" />
         <div className="container-section relative">
           <div className="max-w-3xl">
@@ -217,7 +219,7 @@ export default function Home() {
       <footer className="border-t border-slate-200 bg-white py-12 text-slate-950">
         <div className="container-section grid gap-8 md:grid-cols-2">
           <div>
-            <Image src="/images/logo-mr-mega-marca.png" alt="Logo MR & Mega Marca" width={260} height={80} className="h-auto w-[220px]" />
+            <Image src="/images/logo-mr-mega-marca.png" alt="MR & Mega Marca - fornecedor de brindes personalizados" width={260} height={80} className="h-auto w-[220px]" />
             <p className="mt-4 max-w-lg text-slate-700">Fornecedor de brindes e produtos personalizados para empresas, eventos e ações promocionais.</p>
             <div className="mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-sm">
               <iframe
@@ -229,12 +231,7 @@ export default function Home() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
-            <a
-              href="https://maps.app.goo.gl/WfBRajnkMXNdayLn8"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-700"
-            >
+            <a href="https://maps.app.goo.gl/WfBRajnkMXNdayLn8" target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-700">
               Abrir localização no Google Maps
             </a>
           </div>
