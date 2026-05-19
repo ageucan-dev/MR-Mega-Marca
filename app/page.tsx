@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { BannerCarousel } from "@/components/BannerCarousel";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { WhatsappButton } from "@/components/WhatsappButton";
 
 const products = [
@@ -143,14 +144,7 @@ export default function Home() {
         <div className="mt-8 rounded-3xl border border-green-200 bg-green-50 px-5 py-5 text-center shadow-sm">
           <p className="text-sm font-semibold text-slate-700 sm:text-base">
             Quer ver todas as opções?{" "}
-            <WhatsappButton
-              id="btn-whatsapp-catalogo-completo"
-              category="catalogo-completo"
-              label="Solicite o catálogo completo pelo WhatsApp"
-              product="Catálogo completo de produtos personalizados"
-              className="font-extrabold text-green-700 underline underline-offset-4 transition hover:text-green-800"
-              eventName="click_whatsapp"
-            />
+            <WhatsappButton id="btn-whatsapp-catalogo-completo" category="catalogo-completo" label="Solicite o catálogo completo pelo WhatsApp" product="Catálogo completo de produtos personalizados" className="font-extrabold text-green-700 underline underline-offset-4 transition hover:text-green-800" eventName="click_whatsapp" />
           </p>
         </div>
       </section>
@@ -165,7 +159,6 @@ export default function Home() {
               <p className="mt-4 max-w-2xl text-sm leading-relaxed text-red-50 sm:text-base">Toque nos cards para entender os benefícios e peça uma orientação rápida pelo WhatsApp conforme produto, quantidade e prazo.</p>
               <div className="mt-6 hidden lg:block"><WhatsappButton id="btn-whatsapp-oferta" category="oferta" label="Quero minha condição especial" className="btn-primary" /></div>
             </div>
-
             <div className="grid gap-3 sm:grid-cols-2">
               {offerBenefits.map((item, index) => (
                 <details key={item.title} className="group rounded-2xl border border-white/15 bg-white/10 p-4 shadow-lg shadow-black/10 transition hover:-translate-y-0.5 hover:bg-white/15 open:bg-white/15">
@@ -177,7 +170,6 @@ export default function Home() {
                 </details>
               ))}
             </div>
-
             <div className="lg:hidden"><WhatsappButton id="btn-whatsapp-oferta" category="oferta" label="Quero minha condição especial" className="btn-primary w-full" /></div>
           </div>
         </div>
@@ -205,7 +197,6 @@ export default function Home() {
             <h2 className="section-title mt-3">Soluções para diferentes tipos de clientes</h2>
             <p className="section-subtitle">Veja exemplos de negócios e situações em que os brindes personalizados ajudam a fortalecer relacionamento, presença de marca e ações promocionais.</p>
           </div>
-
           <div className="mt-10 -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-5 [-ms-overflow-style:none] [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-0 lg:grid lg:grid-cols-3 lg:items-stretch lg:overflow-visible lg:px-0 lg:pb-0 [&::-webkit-scrollbar]:hidden">
             {audienceItems.map((item, index) => (
               <article key={item.title} className="group relative flex h-full min-w-[86%] snap-center flex-col rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/8 transition duration-300 hover:-translate-y-1 hover:border-green-500/50 hover:shadow-2xl hover:shadow-green-900/15 sm:min-w-[58%] lg:min-w-0">
@@ -225,6 +216,8 @@ export default function Home() {
         </div>
       </section>
 
+      <TestimonialsCarousel />
+
       <section id="faq" className="container-section py-16 sm:py-20">
         <h2 className="section-title">Perguntas Frequentes</h2>
         <div className="mt-8 space-y-3">{faqItems.map(([q, a]) => <details key={q} className="card p-5"><summary className="cursor-pointer text-base font-bold text-slate-950">{q}</summary><p className="mt-3 leading-relaxed text-slate-600">{a}</p></details>)}</div>
@@ -242,27 +235,12 @@ export default function Home() {
             <div className="mt-5 rounded-3xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
               <p className="text-xs font-black uppercase tracking-[0.18em] text-green-700">Endereço</p>
               <address className="mt-2 text-sm not-italic leading-relaxed text-slate-700">{businessAddress}</address>
-              <button
-                type="button"
-                onClick={() => navigator.clipboard.writeText(businessAddress)}
-                className="mt-3 inline-flex rounded-full bg-green-600 px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-green-700"
-              >
-                Copiar endereço
-              </button>
+              <button type="button" onClick={() => navigator.clipboard.writeText(businessAddress)} className="mt-3 inline-flex rounded-full bg-green-600 px-4 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-green-700">Copiar endereço</button>
             </div>
             <div className="mt-5 overflow-hidden rounded-3xl border border-slate-200 bg-slate-100 shadow-sm">
-              <iframe
-                title="Localização da MR & Mega Marca no Google Maps"
-                src={businessMapEmbedUrl}
-                className="h-56 w-full border-0 sm:h-64"
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+              <iframe title="Localização da MR & Mega Marca no Google Maps" src={businessMapEmbedUrl} className="h-56 w-full border-0 sm:h-64" loading="lazy" allowFullScreen referrerPolicy="no-referrer-when-downgrade" />
             </div>
-            <a href={businessMapSearchUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-700">
-              Abrir localização no Google Maps
-            </a>
+            <a href={businessMapSearchUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center justify-center rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white transition hover:bg-green-700">Abrir localização no Google Maps</a>
           </div>
           <div className="text-sm text-slate-800">
             <p><strong>Endereço:</strong> Tv. Zenun, 102 - Centro, Campestre - MG</p>
