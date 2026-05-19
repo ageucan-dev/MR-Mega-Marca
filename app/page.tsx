@@ -252,6 +252,10 @@ export default function Home() {
                 <a key={id} href={`#${id}`} className="hover:text-green-700">{n}</a>
               ))}
             </div>
+            <div className="mt-6 rounded-3xl border border-slate-200 bg-slate-50 p-4 shadow-sm">
+              <p className="mb-3 text-xs font-black uppercase tracking-[0.18em] text-slate-500">Selos de segurança</p>
+              <Image src="/images/selos/selos-verificacao.png" alt="Selos de verificação Reclame Aqui, Google Safe Browsing e SSL certificado" width={1000} height={260} className="h-auto w-full max-w-[520px] rounded-2xl object-contain" />
+            </div>
             <p className="mt-4 text-xs text-slate-500">© {new Date().getFullYear()} MR & Mega Marca. Todos os direitos reservados.</p>
           </div>
         </div>
