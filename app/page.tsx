@@ -136,6 +136,19 @@ export default function Home() {
             </article>
           ))}
         </div>
+        <div className="mt-8 rounded-3xl border border-green-200 bg-green-50 px-5 py-5 text-center shadow-sm">
+          <p className="text-sm font-semibold text-slate-700 sm:text-base">
+            Quer ver todas as opções?{" "}
+            <WhatsappButton
+              id="btn-whatsapp-catalogo-completo"
+              category="catalogo-completo"
+              label="Solicite o catálogo completo pelo WhatsApp"
+              product="Catálogo completo de produtos personalizados"
+              className="font-extrabold text-green-700 underline underline-offset-4 transition hover:text-green-800"
+              eventName="click_whatsapp"
+            />
+          </p>
+        </div>
       </section>
 
       <section className="relative overflow-hidden bg-[#7F111B] py-10 text-white sm:py-14" aria-label="Condição especial de orçamento">
