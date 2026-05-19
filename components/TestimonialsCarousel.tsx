@@ -104,22 +104,15 @@ export function TestimonialsCarousel() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-white py-14 sm:py-20" aria-label="Avaliações de clientes no Google">
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-slate-50 to-white" aria-hidden="true" />
+    <section className="relative overflow-hidden bg-white pt-8 pb-12 sm:pt-10 sm:pb-16" aria-label="Avaliações de clientes no Google">
       <div className="container-section relative">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <p className="text-xs font-black uppercase tracking-[0.22em] text-green-600">Avaliações no Google</p>
-            <h2 className="section-title mt-3">O que clientes dizem sobre a MR & Mega Marca</h2>
-            <p className="section-subtitle">
-              Avaliações reais publicadas no Google, com comentários sobre atendimento, prazo, preço e qualidade dos produtos personalizados.
-            </p>
-          </div>
+        <div className="flex items-center justify-between gap-5">
+          <p className="text-xs font-black uppercase tracking-[0.22em] text-green-600">Avaliações no Google</p>
           <div className="hidden gap-3 lg:flex">
             <button
               type="button"
               onClick={() => scrollCards("previous")}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-2xl font-black text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-green-500"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-2xl font-black text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-green-500"
               aria-label="Ver avaliações anteriores"
             >
               ‹
@@ -127,7 +120,7 @@ export function TestimonialsCarousel() {
             <button
               type="button"
               onClick={() => scrollCards("next")}
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-2xl font-black text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-green-500"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-blue-100 bg-blue-50 text-2xl font-black text-slate-900 shadow-sm transition hover:-translate-y-0.5 hover:border-green-500"
               aria-label="Ver próximas avaliações"
             >
               ›
@@ -137,16 +130,16 @@ export function TestimonialsCarousel() {
 
         <div
           ref={carouselRef}
-          className="mt-9 -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-6 [-ms-overflow-style:none] [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 [&::-webkit-scrollbar]:hidden"
+          className="mt-5 -mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-6 [-ms-overflow-style:none] [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 [&::-webkit-scrollbar]:hidden"
         >
           {testimonials.map((testimonial) => (
             <article
               key={`${testimonial.name}-${testimonial.time}`}
-              className="relative flex min-h-[310px] min-w-[86%] snap-center flex-col rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-xl shadow-slate-900/8 transition hover:-translate-y-1 hover:shadow-2xl sm:min-w-[46%] lg:min-w-[360px] lg:max-w-[360px]"
+              className="relative flex min-h-[300px] min-w-[86%] snap-center flex-col rounded-[1.75rem] border border-blue-100 bg-blue-50/70 p-6 shadow-xl shadow-blue-950/8 transition hover:-translate-y-1 hover:border-blue-200 hover:bg-blue-50 hover:shadow-2xl sm:min-w-[46%] lg:min-w-[360px] lg:max-w-[360px]"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#0D1E42] text-sm font-black text-white ring-4 ring-green-50" aria-hidden="true">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#0D1E42] text-sm font-black text-white ring-4 ring-white" aria-hidden="true">
                     {testimonial.initials}
                   </div>
                   <div>
@@ -154,7 +147,7 @@ export function TestimonialsCarousel() {
                     <p className="text-xs font-semibold text-slate-500">{testimonial.meta}</p>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-3 py-1 text-[11px] font-black uppercase tracking-wide text-green-700">
+                <span className="inline-flex items-center gap-1 rounded-full bg-white px-3 py-1 text-[11px] font-black uppercase tracking-wide text-green-700 shadow-sm">
                   ✓ Google
                 </span>
               </div>
@@ -164,7 +157,7 @@ export function TestimonialsCarousel() {
 
               <p className="mt-5 flex-1 text-sm leading-relaxed text-slate-600">“{testimonial.text}”</p>
 
-              <div className="mt-5 rounded-2xl bg-slate-50 px-4 py-3 text-xs font-semibold text-slate-500">
+              <div className="mt-5 rounded-2xl bg-white/80 px-4 py-3 text-xs font-semibold text-slate-500 shadow-sm">
                 Avaliação real publicada no Google.
               </div>
             </article>
