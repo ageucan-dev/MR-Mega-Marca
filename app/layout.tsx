@@ -25,6 +25,14 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: siteName,
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/images/logo-mr-mega-marca.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/images/logo-mr-mega-marca.png",
+  },
   title: {
     default: "Brindes Personalizados para Empresas | MR & Mega Marca",
     template: "%s | MR & Mega Marca",
