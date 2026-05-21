@@ -10,8 +10,8 @@ const siteUrl = "https://www.mrmegamarca.com.br";
 const siteName = "MR & Mega Marca";
 const siteDescription =
   "Solicite orçamento de brindes personalizados, camisetas, uniformes, kits corporativos, canetas, chaveiros, sacochilas, squeezes e materiais promocionais. Mais de 40 anos de tradição e atendimento para todo o Brasil conforme viabilidade.";
-const faviconPath = "/favicon.svg";
-const appleIconPath = "/images/favicon/logo-mr-mega-marca-site.png";
+const faviconPngPath = "/images/favicon/logo-mr-mega-marca-site.png";
+const faviconJpgPath = "/images/favicon/logo-mr-mega-marca-site.jpg";
 
 const googleTagManagerId = "GTM-5LD5XRJ8";
 const googleAnalyticsId = "G-M5RPH0J2VK";
@@ -28,9 +28,15 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   applicationName: siteName,
   icons: {
-    icon: [{ url: faviconPath, type: "image/svg+xml" }],
-    shortcut: faviconPath,
-    apple: appleIconPath,
+    icon: [
+      { url: faviconPngPath, type: "image/png", sizes: "512x512" },
+      { url: faviconJpgPath, type: "image/jpeg", sizes: "512x512" },
+    ],
+    shortcut: [
+      { url: faviconPngPath, type: "image/png" },
+      { url: faviconJpgPath, type: "image/jpeg" },
+    ],
+    apple: faviconPngPath,
   },
   title: {
     default: "Brindes Personalizados para Empresas | MR & Mega Marca",
