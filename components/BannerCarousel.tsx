@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { pushDataLayer } from "@/lib/qualification";
+import type { QualificationSource } from "@/lib/qualification";
 
 type Banner = {
   title: string;
@@ -13,18 +14,22 @@ type Banner = {
   mobile: string;
 };
 
+type Props = {
+  onOpenQualification: (source: QualificationSource) => void;
+};
+
 const banners: Banner[] = [
   {
     title: "Mochila Saco Personalizada",
-    product: "Mochila Saco Poliéster Personalizada",
-    category: "mochila-saco",
+    product: "Sacochilas",
+    category: "sacochilas",
     ctaId: "btn-whatsapp-banner-mochila-saco",
     desktop: "/images/banners/banner-mochila-saco-desktop.png",
     mobile: "/images/banners/banner-mochila-saco-mobile.png?v=2",
   },
   {
     title: "Calendário de Mesa Personalizado",
-    product: "Calendário de Mesa em PVC Grande com Refil",
+    product: "Outro produto",
     category: "calendario-mesa",
     ctaId: "btn-whatsapp-banner-calendario-mesa",
     desktop: "/images/banners/banner-calendario-mesa-desktop.png",
@@ -32,7 +37,7 @@ const banners: Banner[] = [
   },
   {
     title: "Caneta Personalizada",
-    product: "Caneta Personalizada",
+    product: "Canetas personalizadas",
     category: "canetas",
     ctaId: "btn-whatsapp-banner-caneta-personalizada",
     desktop: "/images/banners/banner-caneta-personalizada-desktop.png",
@@ -40,7 +45,7 @@ const banners: Banner[] = [
   },
 ];
 
-export function BannerCarousel() {
+export function BannerCarousel({ onOpenQualification }: Props) {
   const [activeBanner, setActiveBanner] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const touchDeltaX = useRef(0);
@@ -89,16 +94,32 @@ export function BannerCarousel() {
     touchDeltaX.current = 0;
   };
 
-  const trackBannerClick = (banner: Banner) => {
-    if (typeof window !== "undefined") {
-      const w = window as Window & { dataLayer?: Array<Record<string, string>> };
-      w.dataLayer = w.dataLayer || [];
-      w.dataLayer.push({
-        event: "click_whatsapp",
-        button_id: banner.ctaId,
-        product_category: banner.category,
-      });
+  const handleBannerClick = (banner: Banner) => {
+    if (wasSwiping.current) {
+      wasSwiping.current = false;
+      return;
     }
+
+    pushDataLayer({
+      event: "click_cta_lp",
+      button_id: banner.ctaId,
+      button_location: "banner",
+      product_category: banner.category,
+    });
+
+    pushDataLayer({
+      event: "open_qualification_form",
+      button_id: banner.ctaId,
+      button_location: "banner",
+      product_category: banner.category,
+    });
+
+    onOpenQualification({
+      buttonId: banner.ctaId,
+      buttonLocation: "banner",
+      productCategory: banner.category,
+      product: banner.product,
+    });
   };
 
   return (
@@ -131,27 +152,17 @@ export function BannerCarousel() {
           style={{ transform: `translateX(-${activeBanner * 100}%)` }}
         >
           {banners.map((banner, index) => (
-            <a
+            <button
               key={banner.ctaId}
               id={banner.ctaId}
-              href={buildWhatsAppUrl(banner.product)}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(event) => {
-                if (wasSwiping.current) {
-                  event.preventDefault();
-                  wasSwiping.current = false;
-                  return;
-                }
-
-                trackBannerClick(banner);
-              }}
+              type="button"
+              onClick={() => handleBannerClick(banner)}
               className="block min-w-full focus:outline-none focus:ring-4 focus:ring-green-400"
-              aria-label={`Solicitar orçamento no WhatsApp para ${banner.title}`}
+              aria-label={`Abrir questionário de orçamento para ${banner.title}`}
             >
               <Image
                 src={banner.mobile}
-                alt={`${banner.title} - oferta especial para WhatsApp`}
+                alt={`${banner.title} - oferta especial para orçamento`}
                 width={1080}
                 height={1080}
                 className="block aspect-square w-full object-cover sm:hidden"
@@ -160,14 +171,14 @@ export function BannerCarousel() {
               />
               <Image
                 src={banner.desktop}
-                alt={`${banner.title} - oferta especial para WhatsApp`}
+                alt={`${banner.title} - oferta especial para orçamento`}
                 width={1200}
                 height={400}
                 className="hidden h-auto w-full object-cover sm:block"
                 sizes="100vw"
                 priority={index === 0}
               />
-            </a>
+            </button>
           ))}
         </div>
       </div>
