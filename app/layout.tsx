@@ -9,7 +9,7 @@ const montserrat = Montserrat({ subsets: ["latin"], variable: "--font-montserrat
 const siteUrl = "https://www.mrmegamarca.com.br";
 const siteName = "MR & Mega Marca";
 const siteDescription =
-  "Solicite orçamento de brindes personalizados, camisetas, uniformes, kits corporativos, canetas, chaveiros, sacochilas, squeezes e materiais promocionais. Mais de 40 anos de tradição e atendimento para todo o Brasil conforme viabilidade.";
+  "Solicite orçamento de brindes personalizados, camisetas, kits corporativos, sacochilas, canetas e chaveiros. Mais de 40 anos de tradição e atendimento para todo o Brasil conforme viabilidade.";
 const faviconPngPath = "/images/favicon/logo-mr-mega-marca-site.png";
 const faviconJpgPath = "/images/favicon/logo-mr-mega-marca-site.jpg";
 
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     apple: faviconPngPath,
   },
   title: {
-    default: "Brindes Personalizados para Empresas | MR & Mega Marca",
+    default: "Brindes Personalizados e Camisetas para Empresas | MR & Mega Marca",
     template: "%s | MR & Mega Marca",
   },
   description: siteDescription,
@@ -47,19 +47,14 @@ export const metadata: Metadata = {
     "brindes personalizados",
     "brindes para empresas",
     "brindes corporativos",
-    "brindes promocionais",
-    "brindes personalizados para eventos",
     "camisetas personalizadas",
     "uniformes personalizados",
-    "kits corporativos personalizados",
     "canetas personalizadas",
     "chaveiros personalizados",
     "sacochilas personalizadas",
-    "squeezes personalizados",
-    "garrafas personalizadas",
-    "calendários personalizados",
-    "silk screen",
-    "impressão digital",
+    "kits corporativos personalizados",
+    "brindes para eventos",
+    "produtos personalizados para empresas",
     "Mega Marca",
     "MR Silk-Screen",
   ],
@@ -74,9 +69,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Brindes Personalizados para Empresas | MR & Mega Marca",
-    description:
-      "Fornecedor de brindes personalizados, camisetas, uniformes, kits corporativos e materiais promocionais para empresas, eventos e ações comerciais.",
+    title: "Brindes Personalizados e Camisetas para Empresas | MR & Mega Marca",
+    description: siteDescription,
     url: siteUrl,
     siteName,
     locale: "pt_BR",
@@ -92,9 +86,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Brindes Personalizados para Empresas | MR & Mega Marca",
-    description:
-      "Brindes, camisetas, kits corporativos, canetas, chaveiros, sacochilas e materiais promocionais com orçamento pelo WhatsApp.",
+    title: "Brindes Personalizados e Camisetas para Empresas | MR & Mega Marca",
+    description: siteDescription,
     images: ["/images/logo-mr-mega-marca.png"],
   },
   robots: {
@@ -112,7 +105,7 @@ export const metadata: Metadata = {
   },
   other: {
     "geo.region": "BR-MG",
-    "geo.placename": "Poços de Caldas, Minas Gerais",
+    "geo.placename": "Campestre, Minas Gerais",
     "geo.position": "-21.7041768;-46.2528365",
     ICBM: "-21.7041768, -46.2528365",
     "format-detection": "telephone=yes",
