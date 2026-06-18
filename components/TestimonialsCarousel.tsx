@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { WhatsappButton } from "@/components/WhatsappButton";
+import type { QualificationSource } from "@/lib/qualification";
 
 const testimonials = [
   {
@@ -90,7 +91,7 @@ function Stars({ rating }: { rating: number }) {
   );
 }
 
-export function TestimonialsCarousel() {
+export function TestimonialsCarousel({ onOpenQualification }: { onOpenQualification: (source: QualificationSource) => void }) {
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scrollCards = (direction: "previous" | "next") => {
@@ -170,10 +171,11 @@ export function TestimonialsCarousel() {
             <WhatsappButton
               id="btn-whatsapp-enviar-avaliacao"
               category="avaliacao"
+              buttonLocation="avaliacoes"
               label="Publique sua avaliação pelo WhatsApp"
               product="Quero publicar uma avaliação sobre a MR & Mega Marca"
               className="font-extrabold text-green-700 underline underline-offset-4 transition hover:text-green-800"
-              eventName="click_whatsapp"
+              onOpenQualification={onOpenQualification}
             />
           </p>
         </div>
