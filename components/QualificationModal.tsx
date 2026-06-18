@@ -134,6 +134,7 @@ export function QualificationModal({ isOpen, source, onClose }: Props) {
     pushDataLayer({
       event: "set_user_data_for_enhanced_conversions",
       user_data: userData,
+      enhanced_conversion_note: "Usar apenas em tags de Google Ads / Conversões Otimizadas. Não enviar estes dados ao GA4 como parâmetros personalizados.",
     });
     pushDataLayer({ event: "qualified_lead", ...leadPayload });
     pushDataLayer({ event: "click_whatsapp_qualified", ...leadPayload });
