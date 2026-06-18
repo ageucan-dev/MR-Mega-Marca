@@ -222,7 +222,7 @@ export default function Home() {
       </section>
 
       <AudienceSection />
-      <TestimonialsCarousel />
+      <TestimonialsCarousel onOpenQualification={openQualification} />
 
       <section id="faq" className="container-section py-16 sm:py-20">
         <h2 className="section-title">Perguntas frequentes</h2>
