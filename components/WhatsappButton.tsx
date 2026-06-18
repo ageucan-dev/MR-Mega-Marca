@@ -1,35 +1,57 @@
 "use client";
 
 import Image from "next/image";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { QualificationSource, pushDataLayer } from "@/lib/qualification";
 
 type Props = {
   id: string;
   category: string;
   label: string;
   product?: string;
+  buttonLocation: string;
   className?: string;
-  eventName?: "click_whatsapp" | "click_product_card" | "click_final_cta";
+  onOpenQualification: (source: QualificationSource) => void;
 };
 
-export function WhatsappButton({ id, category, label, product, className = "", eventName = "click_whatsapp" }: Props) {
-  const href = buildWhatsAppUrl(product);
-
+export function WhatsappButton({
+  id,
+  category,
+  label,
+  product,
+  buttonLocation,
+  className = "",
+  onOpenQualification,
+}: Props) {
   const handleClick = () => {
-    if (typeof window !== "undefined") {
-      const w = window as Window & { dataLayer?: Array<Record<string, string>> };
-      w.dataLayer = w.dataLayer || [];
-      w.dataLayer.push({ event: eventName, button_id: id, product_category: category });
-    }
+    const source = {
+      buttonId: id,
+      buttonLocation,
+      productCategory: category,
+      product,
+    };
+
+    pushDataLayer({
+      event: "click_cta_lp",
+      button_id: id,
+      button_location: buttonLocation,
+      product_category: category,
+    });
+
+    pushDataLayer({
+      event: "open_qualification_form",
+      button_id: id,
+      button_location: buttonLocation,
+      product_category: category,
+    });
+
+    onOpenQualification(source);
   };
 
   if (id === "btn-whatsapp-flutuante") {
     return (
-      <a
+      <button
         id={id}
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        type="button"
         aria-label={label}
         className="group relative block h-16 w-16 transition duration-300 hover:-translate-y-1 sm:h-[72px] sm:w-[72px]"
         onClick={handleClick}
@@ -43,13 +65,13 @@ export function WhatsappButton({ id, category, label, product, className = "", e
           className="relative h-full w-full object-contain drop-shadow-[0_14px_18px_rgba(0,0,0,0.28)]"
           priority
         />
-      </a>
+      </button>
     );
   }
 
   return (
-    <a id={id} href={href} target="_blank" rel="noopener noreferrer" className={className} onClick={handleClick}>
+    <button id={id} type="button" className={className} onClick={handleClick}>
       {label}
-    </a>
+    </button>
   );
 }
