@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { QualificationSource, pushDataLayer } from "@/lib/qualification";
+import { pushDataLayer } from "@/lib/qualification";
+import type { QualificationSource } from "@/lib/qualification";
 
 type Props = {
   id: string;
