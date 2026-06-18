@@ -132,7 +132,7 @@ export default function Home() {
       </header>
 
       <div className="pt-20 sm:pt-24">
-        <BannerCarousel />
+        <BannerCarousel onOpenQualification={openQualification} />
       </div>
 
       <section id="top" className="bg-[#0D1E42] text-white">
