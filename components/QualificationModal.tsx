@@ -11,6 +11,7 @@ import {
   buildEnhancedConversionUserData,
   isQualifiedForm,
   pushDataLayer,
+  setEnhancedConversionUserData,
 } from "@/lib/qualification";
 import type { QualificationFormData, QualificationSource } from "@/lib/qualification";
 
@@ -130,6 +131,8 @@ export function QualificationModal({ isOpen, source, onClose }: Props) {
     };
 
     const userData = buildEnhancedConversionUserData(form);
+
+    setEnhancedConversionUserData(userData);
 
     pushDataLayer({
       event: "set_user_data_for_enhanced_conversions",
