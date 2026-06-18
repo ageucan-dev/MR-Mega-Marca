@@ -1,6 +1,7 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import type { FormEvent } from "react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import {
   ART_OPTIONS,
@@ -9,11 +10,10 @@ import {
   PRODUCT_OPTIONS,
   PURPOSE_OPTIONS,
   QUANTITY_OPTIONS,
-  QualificationFormData,
-  QualificationSource,
   isQualifiedForm,
   pushDataLayer,
 } from "@/lib/qualification";
+import type { QualificationFormData, QualificationSource } from "@/lib/qualification";
 
 type Props = {
   isOpen: boolean;
