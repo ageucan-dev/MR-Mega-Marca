@@ -53,15 +53,39 @@ export type EnhancedConversionUserData = {
   last_name: string;
 };
 
+type GtagWindow = Window & {
+  dataLayer?: Array<Record<string, unknown> | IArguments>;
+  gtag?: (...args: unknown[]) => void;
+};
+
 export const MINIMUM_ORDER_MESSAGE =
   "No momento, a MR Mega Marca trabalha principalmente com pedidos corporativos e quantidades maiores. Para seguir com o orçamento pelo WhatsApp, informe uma quantidade acima de 100 unidades.";
 
 export function pushDataLayer(payload: Record<string, unknown>) {
   if (typeof window === "undefined") return;
 
-  const w = window as Window & { dataLayer?: Array<Record<string, unknown>> };
+  const w = window as GtagWindow;
   w.dataLayer = w.dataLayer || [];
   w.dataLayer.push(payload);
+}
+
+export function setEnhancedConversionUserData(userData: EnhancedConversionUserData) {
+  if (typeof window === "undefined") return;
+
+  const w = window as GtagWindow;
+  w.dataLayer = w.dataLayer || [];
+  w.gtag = w.gtag || function gtagFallback() {
+    w.dataLayer?.push(arguments);
+  };
+
+  w.gtag("set", "user_data", {
+    email: userData.email,
+    phone_number: userData.phone_number,
+    address: {
+      first_name: userData.first_name,
+      last_name: userData.last_name,
+    },
+  });
 }
 
 export function normalizeEmail(email: string) {
