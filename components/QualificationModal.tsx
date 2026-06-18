@@ -4,12 +4,11 @@ import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import {
-  ART_OPTIONS,
   DEADLINE_OPTIONS,
   MINIMUM_ORDER_MESSAGE,
   PRODUCT_OPTIONS,
-  PURPOSE_OPTIONS,
   QUANTITY_OPTIONS,
+  buildEnhancedConversionUserData,
   isQualifiedForm,
   pushDataLayer,
 } from "@/lib/qualification";
@@ -22,12 +21,12 @@ type Props = {
 };
 
 const emptyForm: QualificationFormData = {
+  fullName: "",
+  phone: "",
+  email: "",
   product: "",
   quantity: "",
-  purpose: "",
-  cityState: "",
   deadline: "",
-  art: "",
   notes: "",
 };
 
@@ -125,12 +124,17 @@ export function QualificationModal({ isOpen, source, onClose }: Props) {
     const leadPayload = {
       product_category: source?.productCategory ?? form.product,
       quantity_range: form.quantity,
-      lead_purpose: form.purpose,
-      city_state: form.cityState.trim(),
       deadline: form.deadline,
-      has_logo_or_art: form.art,
+      button_id: source?.buttonId,
+      button_location: source?.buttonLocation,
     };
 
+    const userData = buildEnhancedConversionUserData(form);
+
+    pushDataLayer({
+      event: "set_user_data_for_enhanced_conversions",
+      user_data: userData,
+    });
     pushDataLayer({ event: "qualified_lead", ...leadPayload });
     pushDataLayer({ event: "click_whatsapp_qualified", ...leadPayload });
 
@@ -155,7 +159,7 @@ export function QualificationModal({ isOpen, source, onClose }: Props) {
               Antes de seguir para o WhatsApp
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
-              Responda algumas informações para nossa equipe entender melhor seu pedido e agilizar o orçamento.
+              Preencha seus dados para nossa equipe entender melhor o pedido e agilizar o orçamento.
             </p>
           </div>
           <button type="button" onClick={onClose} aria-label="Fechar modal" className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-100 text-xl font-bold text-slate-700 transition hover:bg-slate-200">
@@ -164,6 +168,47 @@ export function QualificationModal({ isOpen, source, onClose }: Props) {
         </div>
 
         <form onSubmit={handleSubmit} className="mt-6 grid gap-4 sm:grid-cols-2">
+          <label htmlFor="fullName" className="block sm:col-span-2">
+            <span className="text-sm font-bold text-slate-900">Nome e sobrenome</span>
+            <input
+              id="fullName"
+              value={form.fullName}
+              required
+              autoComplete="name"
+              placeholder="Exemplo: Christian Silva"
+              onChange={(event) => updateField("fullName", event.target.value)}
+              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+            />
+          </label>
+
+          <label htmlFor="phone" className="block">
+            <span className="text-sm font-bold text-slate-900">Telefone</span>
+            <input
+              id="phone"
+              value={form.phone}
+              required
+              autoComplete="tel"
+              inputMode="tel"
+              placeholder="Exemplo: (35) 99999-9999"
+              onChange={(event) => updateField("phone", event.target.value)}
+              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+            />
+          </label>
+
+          <label htmlFor="email" className="block">
+            <span className="text-sm font-bold text-slate-900">E-mail</span>
+            <input
+              id="email"
+              type="email"
+              value={form.email}
+              required
+              autoComplete="email"
+              placeholder="Exemplo: contato@email.com"
+              onChange={(event) => updateField("email", event.target.value)}
+              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+            />
+          </label>
+
           <SelectField id="product" label="Produto desejado" value={form.product} options={PRODUCT_OPTIONS} onChange={(value) => updateField("product", value)} />
           <SelectField id="quantity" label="Quantidade aproximada" value={form.quantity} options={QUANTITY_OPTIONS} onChange={(value) => updateField("quantity", value)} />
 
@@ -173,22 +218,7 @@ export function QualificationModal({ isOpen, source, onClose }: Props) {
             </div>
           ) : null}
 
-          <SelectField id="purpose" label="Finalidade do pedido" value={form.purpose} options={PURPOSE_OPTIONS} onChange={(value) => updateField("purpose", value)} />
-
-          <label htmlFor="cityState" className="block">
-            <span className="text-sm font-bold text-slate-900">Cidade/Estado</span>
-            <input
-              id="cityState"
-              value={form.cityState}
-              required
-              placeholder="Exemplo: Franca/SP"
-              onChange={(event) => updateField("cityState", event.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
-            />
-          </label>
-
           <SelectField id="deadline" label="Prazo desejado" value={form.deadline} options={DEADLINE_OPTIONS} onChange={(value) => updateField("deadline", value)} />
-          <SelectField id="art" label="Logo ou arte" value={form.art} options={ART_OPTIONS} onChange={(value) => updateField("art", value)} />
 
           <label htmlFor="notes" className="block sm:col-span-2">
             <span className="text-sm font-bold text-slate-900">Observações <span className="font-medium text-slate-500">(opcional)</span></span>
@@ -212,7 +242,7 @@ export function QualificationModal({ isOpen, source, onClose }: Props) {
               Continuar para o WhatsApp
             </button>
             <p className="mt-3 text-center text-xs leading-relaxed text-slate-500">
-              Atendimento voltado para empresas, eventos e pedidos corporativos acima de 100 unidades.
+              Ao continuar, seus dados serão usados para atendimento do orçamento e medição de campanhas conforme políticas aplicáveis.
             </p>
           </div>
         </form>
