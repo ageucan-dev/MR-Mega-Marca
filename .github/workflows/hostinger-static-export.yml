@@ -1,0 +1,41 @@
+name: Gerar ZIP para Hostinger
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - qualificacao-leads-100-unidades
+
+jobs:
+  build-static-export:
+    name: Build e ZIP do site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Gerar versão estática
+        run: npm run build
+
+      - name: Criar ZIP para public_html
+        run: |
+          cd out
+          zip -r ../site-hostinger.zip .
+
+      - name: Disponibilizar ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-hostinger
+          path: site-hostinger.zip
+          retention-days: 7
