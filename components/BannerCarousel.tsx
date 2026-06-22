@@ -19,7 +19,7 @@ type Props = {
 };
 
 const AUTOPLAY_INTERVAL_MS = 5000;
-const USER_READING_PAUSE_MS = 40000;
+const USER_READING_PAUSE_MS = 20000;
 
 const banners: Banner[] = [
   {
