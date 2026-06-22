@@ -18,7 +18,18 @@ type Props = {
   onOpenQualification: (source: QualificationSource) => void;
 };
 
+const AUTOPLAY_INTERVAL_MS = 5000;
+const USER_READING_PAUSE_MS = 40000;
+
 const banners: Banner[] = [
+  {
+    title: "Caneta Personalizada",
+    product: "Canetas personalizadas",
+    category: "canetas",
+    ctaId: "btn-whatsapp-banner-caneta-personalizada",
+    desktop: "/images/banners/banner-caneta-personalizada-desktop.png",
+    mobile: "/images/banners/banner-caneta-personalizada-mobile.png?v=2",
+  },
   {
     title: "Mochila Saco Personalizada",
     product: "Sacochilas",
@@ -35,21 +46,18 @@ const banners: Banner[] = [
     desktop: "/images/banners/banner-calendario-mesa-desktop.png",
     mobile: "/images/banners/banner-calendario-mesa-mobile.png?v=2",
   },
-  {
-    title: "Caneta Personalizada",
-    product: "Canetas personalizadas",
-    category: "canetas",
-    ctaId: "btn-whatsapp-banner-caneta-personalizada",
-    desktop: "/images/banners/banner-caneta-personalizada-desktop.png",
-    mobile: "/images/banners/banner-caneta-personalizada-mobile.png?v=2",
-  },
 ];
 
 export function BannerCarousel({ onOpenQualification }: Props) {
   const [activeBanner, setActiveBanner] = useState(0);
+  const [resumeAutoplayAt, setResumeAutoplayAt] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const touchDeltaX = useRef(0);
   const wasSwiping = useRef(false);
+
+  const pauseAutoplayForReading = () => {
+    setResumeAutoplayAt(Date.now() + USER_READING_PAUSE_MS);
+  };
 
   const goToNext = () => {
     setActiveBanner((current) => (current + 1) % banners.length);
@@ -59,11 +67,29 @@ export function BannerCarousel({ onOpenQualification }: Props) {
     setActiveBanner((current) => (current - 1 + banners.length) % banners.length);
   };
 
+  const handleManualNext = () => {
+    pauseAutoplayForReading();
+    goToNext();
+  };
+
+  const handleManualPrevious = () => {
+    pauseAutoplayForReading();
+    goToPrevious();
+  };
+
+  const handleManualIndicator = (index: number) => {
+    pauseAutoplayForReading();
+    setActiveBanner(index);
+  };
+
   useEffect(() => {
-    const interval = window.setInterval(goToNext, 5000);
+    const interval = window.setInterval(() => {
+      if (Date.now() < resumeAutoplayAt) return;
+      goToNext();
+    }, AUTOPLAY_INTERVAL_MS);
 
     return () => window.clearInterval(interval);
-  }, []);
+  }, [resumeAutoplayAt]);
 
   const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
     touchStartX.current = event.touches[0].clientX;
@@ -83,6 +109,8 @@ export function BannerCarousel({ onOpenQualification }: Props) {
 
   const handleTouchEnd = () => {
     if (Math.abs(touchDeltaX.current) > 45) {
+      pauseAutoplayForReading();
+
       if (touchDeltaX.current < 0) {
         goToNext();
       } else {
@@ -133,7 +161,7 @@ export function BannerCarousel({ onOpenQualification }: Props) {
         <button
           type="button"
           aria-label="Banner anterior"
-          onClick={goToPrevious}
+          onClick={handleManualPrevious}
           className="absolute left-5 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-slate-950/45 text-3xl font-bold text-white shadow-lg backdrop-blur transition hover:bg-slate-950/65 sm:flex"
         >
           ‹
@@ -141,7 +169,7 @@ export function BannerCarousel({ onOpenQualification }: Props) {
         <button
           type="button"
           aria-label="Próximo banner"
-          onClick={goToNext}
+          onClick={handleManualNext}
           className="absolute right-5 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-slate-950/45 text-3xl font-bold text-white shadow-lg backdrop-blur transition hover:bg-slate-950/65 sm:flex"
         >
           ›
@@ -189,7 +217,7 @@ export function BannerCarousel({ onOpenQualification }: Props) {
             key={`indicator-${banner.ctaId}`}
             type="button"
             aria-label={`Ver banner ${index + 1}: ${banner.title}`}
-            onClick={() => setActiveBanner(index)}
+            onClick={() => handleManualIndicator(index)}
             className={`h-2 rounded-full transition-all sm:h-2.5 ${
               activeBanner === index ? "w-8 bg-green-500" : "w-3 bg-white/35 hover:bg-white/60"
             }`}
