@@ -54,7 +54,7 @@ export type EnhancedConversionUserData = {
 };
 
 type GtagWindow = Window & {
-  dataLayer?: Array<Record<string, unknown> | IArguments>;
+  dataLayer?: Array<Record<string, unknown> | unknown[]>;
   gtag?: (...args: unknown[]) => void;
 };
 
@@ -74,8 +74,8 @@ export function setEnhancedConversionUserData(userData: EnhancedConversionUserDa
 
   const w = window as GtagWindow;
   w.dataLayer = w.dataLayer || [];
-  w.gtag = w.gtag || function gtagFallback() {
-    w.dataLayer?.push(arguments);
+  w.gtag = w.gtag || function gtagFallback(...args: unknown[]) {
+    w.dataLayer?.push(args);
   };
 
   w.gtag("set", "user_data", {
