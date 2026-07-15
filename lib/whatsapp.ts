@@ -1,22 +1,23 @@
-import type { QualificationFormData } from "@/lib/qualification";
-
 export const WHATSAPP_NUMBER = "553537431554";
 
-export function buildWhatsAppMessage(data: QualificationFormData) {
-  const notes = data.notes?.trim() || "Não informado.";
+type WhatsAppContext = {
+  product?: string;
+};
 
-  return `Olá, gostaria de fazer um orçamento com a MR Mega Marca.
+export function buildWhatsAppMessage(context: WhatsAppContext = {}) {
+  const product = context.product || "";
 
-Nome: ${data.fullName.trim()}
-Telefone: ${data.phone.trim()}
-E-mail: ${data.email.trim()}
-Produto desejado: ${data.product}
-Quantidade aproximada: ${data.quantity}
-Prazo desejado: ${data.deadline}
-Observações: ${notes}`;
+  return `Olá, vim pelo site da Mega Marca e gostaria de solicitar um orçamento.
+
+Produto desejado: ${product}
+Quantidade aproximada:
+Prazo desejado:
+Cidade/Estado:
+Já tenho logo ou arte:
+Observações sobre o pedido:`;
 }
 
-export function buildWhatsAppUrl(data: QualificationFormData) {
-  const text = encodeURIComponent(buildWhatsAppMessage(data));
+export function buildWhatsAppUrl(product?: string) {
+  const text = encodeURIComponent(buildWhatsAppMessage({ product }));
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
 }
