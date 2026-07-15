@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { pushDataLayer } from "@/lib/qualification";
-import type { QualificationSource } from "@/lib/qualification";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 type Banner = {
   title: string;
@@ -12,10 +12,6 @@ type Banner = {
   ctaId: string;
   desktop: string;
   mobile: string;
-};
-
-type Props = {
-  onOpenQualification: (source: QualificationSource) => void;
 };
 
 const AUTOPLAY_INTERVAL_MS = 5000;
@@ -48,7 +44,7 @@ const banners: Banner[] = [
   },
 ];
 
-export function BannerCarousel({ onOpenQualification }: Props) {
+export function BannerCarousel() {
   const [activeBanner, setActiveBanner] = useState(0);
   const [resumeAutoplayAt, setResumeAutoplayAt] = useState(0);
   const touchStartX = useRef<number | null>(null);
@@ -133,21 +129,19 @@ export function BannerCarousel({ onOpenQualification }: Props) {
       button_id: banner.ctaId,
       button_location: "banner",
       product_category: banner.category,
+      product_name: banner.product,
     });
 
     pushDataLayer({
-      event: "open_qualification_form",
+      event: "click_whatsapp",
       button_id: banner.ctaId,
       button_location: "banner",
       product_category: banner.category,
+      product_name: banner.product,
+      conversion_type: "direct_whatsapp",
     });
 
-    onOpenQualification({
-      buttonId: banner.ctaId,
-      buttonLocation: "banner",
-      productCategory: banner.category,
-      product: banner.product,
-    });
+    window.open(buildWhatsAppUrl(banner.product), "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -186,7 +180,7 @@ export function BannerCarousel({ onOpenQualification }: Props) {
               type="button"
               onClick={() => handleBannerClick(banner)}
               className="block min-w-full focus:outline-none focus:ring-4 focus:ring-green-400"
-              aria-label={`Abrir questionário de orçamento para ${banner.title}`}
+              aria-label={`Abrir orçamento no WhatsApp para ${banner.title}`}
             >
               <Image
                 src={banner.mobile}
