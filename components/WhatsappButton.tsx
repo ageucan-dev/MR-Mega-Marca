@@ -39,7 +39,7 @@ export function WhatsappButton({
       conversion_type: "direct_whatsapp",
     });
 
-    window.open(buildWhatsAppUrl(product), "_blank", "noopener,noreferrer");
+    window.open(buildWhatsAppUrl(), "_blank", "noopener,noreferrer");
   };
 
   if (id === "btn-whatsapp-flutuante") {
