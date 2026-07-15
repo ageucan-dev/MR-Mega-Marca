@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { pushDataLayer } from "@/lib/qualification";
-import type { QualificationSource } from "@/lib/qualification";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 type Props = {
   id: string;
@@ -11,7 +11,6 @@ type Props = {
   product?: string;
   buttonLocation: string;
   className?: string;
-  onOpenQualification: (source: QualificationSource) => void;
 };
 
 export function WhatsappButton({
@@ -21,31 +20,26 @@ export function WhatsappButton({
   product,
   buttonLocation,
   className = "",
-  onOpenQualification,
 }: Props) {
   const handleClick = () => {
-    const source = {
-      buttonId: id,
-      buttonLocation,
-      productCategory: category,
-      product,
-    };
-
     pushDataLayer({
       event: "click_cta_lp",
       button_id: id,
       button_location: buttonLocation,
       product_category: category,
+      product_name: product || "geral",
     });
 
     pushDataLayer({
-      event: "open_qualification_form",
+      event: "click_whatsapp",
       button_id: id,
       button_location: buttonLocation,
       product_category: category,
+      product_name: product || "geral",
+      conversion_type: "direct_whatsapp",
     });
 
-    onOpenQualification(source);
+    window.open(buildWhatsAppUrl(product), "_blank", "noopener,noreferrer");
   };
 
   if (id === "btn-whatsapp-flutuante") {
