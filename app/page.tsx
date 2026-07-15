@@ -85,7 +85,7 @@ const stats = [
 const steps = [
   { title: "Escolha o produto", desc: "Selecione o tipo de brinde, camiseta, kit ou material personalizado." },
   { title: "Clique para chamar", desc: "Todos os botões levam direto ao WhatsApp oficial da MR & Mega Marca." },
-  { title: "Informe os detalhes", desc: "A mensagem automática já abre com campos para produto, quantidade, prazo, cidade, arte e observações." },
+  { title: "Inicie a conversa", desc: "A mensagem padrão já abre pronta para você solicitar o orçamento." },
   { title: "Receba o atendimento", desc: "A equipe avalia seu pedido e retorna com as melhores opções conforme produto, quantidade e viabilidade." },
 ];
 
@@ -134,9 +134,6 @@ export default function Home() {
             </h1>
             <p className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-200">
               Canetas, chaveiros, camisetas, sacochilas, kits corporativos e materiais promocionais com a sua marca. Atendimento voltado para pedidos corporativos acima de 100 unidades.
-            </p>
-            <p className="mt-4 max-w-3xl rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-semibold text-white">
-              {minimumOrderText}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <WhatsappButton id="btn-whatsapp-hero" category="geral" buttonLocation="hero" label="Solicitar orçamento" className="btn-primary" />
