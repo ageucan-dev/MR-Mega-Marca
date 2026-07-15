@@ -1,16 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { AudienceSection } from "@/components/AudienceSection";
 import { BannerCarousel } from "@/components/BannerCarousel";
-import { QualificationModal } from "@/components/QualificationModal";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { SiteFooter } from "@/components/SiteFooter";
 import { TestimonialsCarousel } from "@/components/TestimonialsCarousel";
 import { WhatsappButton } from "@/components/WhatsappButton";
 import { pushDataLayer } from "@/lib/qualification";
-import type { QualificationSource } from "@/lib/qualification";
 
 const minimumOrderText = "Atendimento voltado para empresas, eventos e pedidos corporativos acima de 100 unidades.";
 
@@ -86,9 +84,9 @@ const stats = [
 
 const steps = [
   { title: "Escolha o produto", desc: "Selecione o tipo de brinde, camiseta, kit ou material personalizado." },
-  { title: "Informe a quantidade", desc: "Trabalhamos principalmente com pedidos corporativos acima de 100 unidades." },
-  { title: "Preencha os detalhes", desc: "Informe cidade, prazo, finalidade e se já possui logo ou arte." },
-  { title: "Siga para o WhatsApp", desc: "Após a qualificação, a mensagem é montada automaticamente para agilizar o atendimento." },
+  { title: "Clique para chamar", desc: "Todos os botões levam direto ao WhatsApp oficial da MR & Mega Marca." },
+  { title: "Informe os detalhes", desc: "A mensagem automática já abre com campos para produto, quantidade, prazo, cidade, arte e observações." },
+  { title: "Receba o atendimento", desc: "A equipe avalia seu pedido e retorna com as melhores opções conforme produto, quantidade e viabilidade." },
 ];
 
 const faqItems = [
@@ -101,17 +99,9 @@ const faqItems = [
 ] as const;
 
 export default function Home() {
-  const [qualificationOpen, setQualificationOpen] = useState(false);
-  const [qualificationSource, setQualificationSource] = useState<QualificationSource | null>(null);
-
   useEffect(() => {
     pushDataLayer({ event: "view_product_section", section: "produtos" });
   }, []);
-
-  const openQualification = (source: QualificationSource) => {
-    setQualificationSource(source);
-    setQualificationOpen(true);
-  };
 
   return (
     <main className="overflow-hidden">
@@ -127,12 +117,12 @@ export default function Home() {
               <a key={id} href={`#${id}`} className="text-sm font-semibold text-slate-700 hover:text-brandBlue">{name}</a>
             ))}
           </nav>
-          <WhatsappButton id="btn-whatsapp-header" category="geral" buttonLocation="header" label="Solicitar orçamento" className="btn-primary shrink-0 px-4 py-3 text-xs sm:px-6 sm:text-sm" onOpenQualification={openQualification} />
+          <WhatsappButton id="btn-whatsapp-header" category="geral" buttonLocation="header" label="Solicitar orçamento" className="btn-primary shrink-0 px-4 py-3 text-xs sm:px-6 sm:text-sm" />
         </div>
       </header>
 
       <div className="pt-20 sm:pt-24">
-        <BannerCarousel onOpenQualification={openQualification} />
+        <BannerCarousel />
       </div>
 
       <section id="top" className="bg-[#0D1E42] text-white">
@@ -149,7 +139,7 @@ export default function Home() {
               {minimumOrderText}
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <WhatsappButton id="btn-whatsapp-hero" category="geral" buttonLocation="hero" label="Solicitar orçamento" className="btn-primary" onOpenQualification={openQualification} />
+              <WhatsappButton id="btn-whatsapp-hero" category="geral" buttonLocation="hero" label="Solicitar orçamento" className="btn-primary" />
               <a href="#produtos" className="btn-secondary">Ver produtos mais procurados</a>
             </div>
           </div>
@@ -177,7 +167,7 @@ export default function Home() {
       <section id="produtos" className="container-section py-16 sm:py-20">
         <div className="max-w-4xl">
           <h2 className="section-title">Produtos mais procurados para personalizar sua marca</h2>
-          <p className="section-subtitle">Escolha uma das opções abaixo e solicite um orçamento qualificado.</p>
+          <p className="section-subtitle">Escolha uma das opções abaixo e solicite um orçamento pelo WhatsApp.</p>
           <p className="mt-4 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-bold text-green-800">{minimumOrderText}</p>
         </div>
         <div className="mt-10 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -191,7 +181,7 @@ export default function Home() {
                 <h3 className="text-xl font-extrabold text-slate-950" style={{ fontFamily: "var(--font-montserrat), sans-serif" }}>{product.title}</h3>
                 <p className="mt-3 leading-relaxed text-slate-600">{product.desc}</p>
                 <div className="mt-auto pt-6">
-                  <WhatsappButton id={product.id} category={product.category} product={product.product} buttonLocation="produtos" label={product.buttonLabel} className="btn-primary w-full" onOpenQualification={openQualification} />
+                  <WhatsappButton id={product.id} category={product.category} product={product.product} buttonLocation="produtos" label={product.buttonLabel} className="btn-primary w-full" />
                 </div>
               </div>
             </article>
@@ -203,8 +193,8 @@ export default function Home() {
         <div className="container-section">
           <div className="max-w-4xl">
             <h2 className="section-title">Como funciona o orçamento</h2>
-            <p className="section-subtitle">Um fluxo simples para evitar retrabalho e acelerar a resposta da equipe.</p>
-            <p className="mt-4 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-800">Antes do WhatsApp: {minimumOrderText}</p>
+            <p className="section-subtitle">Um fluxo simples para chegar direto no atendimento pelo WhatsApp.</p>
+            <p className="mt-4 rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-800">{minimumOrderText}</p>
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, index) => (
@@ -216,13 +206,13 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-8">
-            <WhatsappButton id="btn-whatsapp-cta-intermediario" category="geral" buttonLocation="como-funciona" label="Solicitar orçamento" className="btn-primary" onOpenQualification={openQualification} />
+            <WhatsappButton id="btn-whatsapp-cta-intermediario" category="geral" buttonLocation="como-funciona" label="Solicitar orçamento" className="btn-primary" />
           </div>
         </div>
       </section>
 
       <AudienceSection />
-      <TestimonialsCarousel onOpenQualification={openQualification} />
+      <TestimonialsCarousel />
 
       <section id="faq" className="container-section py-16 sm:py-20">
         <h2 className="section-title">Perguntas frequentes</h2>
@@ -239,11 +229,11 @@ export default function Home() {
 
       <section id="contato" className="bg-[#0D1E42] py-16 text-white sm:py-20">
         <div className="container-section text-center">
-          <h2 className="section-title-light">Solicite um orçamento qualificado para sua empresa ou evento</h2>
-          <p className="mx-auto mt-4 max-w-2xl text-slate-200">Preencha o questionário rápido e siga para o WhatsApp com as informações que a equipe precisa para atender melhor.</p>
+          <h2 className="section-title-light">Solicite um orçamento para sua empresa ou evento</h2>
+          <p className="mx-auto mt-4 max-w-2xl text-slate-200">Clique no botão abaixo e fale diretamente com a equipe da MR & Mega Marca pelo WhatsApp.</p>
           <p className="mx-auto mt-4 max-w-2xl rounded-2xl border border-white/15 bg-white/10 px-4 py-3 text-sm font-bold text-white">{minimumOrderText}</p>
           <div className="mt-8">
-            <WhatsappButton id="btn-whatsapp-final" category="geral" buttonLocation="cta-final" label="Solicitar orçamento agora" className="btn-primary" onOpenQualification={openQualification} />
+            <WhatsappButton id="btn-whatsapp-final" category="geral" buttonLocation="cta-final" label="Solicitar orçamento agora" className="btn-primary" />
           </div>
         </div>
       </section>
@@ -251,10 +241,8 @@ export default function Home() {
       <SiteFooter />
 
       <div className="fixed bottom-5 right-5 z-50">
-        <WhatsappButton id="btn-whatsapp-flutuante" category="geral" buttonLocation="flutuante" label="Orçamento pelo WhatsApp" onOpenQualification={openQualification} />
+        <WhatsappButton id="btn-whatsapp-flutuante" category="geral" buttonLocation="flutuante" label="Orçamento pelo WhatsApp" />
       </div>
-
-      <QualificationModal isOpen={qualificationOpen} source={qualificationSource} onClose={() => setQualificationOpen(false)} />
     </main>
   );
 }
