@@ -141,7 +141,7 @@ export function BannerCarousel() {
       conversion_type: "direct_whatsapp",
     });
 
-    window.open(buildWhatsAppUrl(banner.product), "_blank", "noopener,noreferrer");
+    window.open(buildWhatsAppUrl(), "_blank", "noopener,noreferrer");
   };
 
   return (
