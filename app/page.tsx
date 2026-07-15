@@ -163,9 +163,8 @@ export default function Home() {
 
       <section id="produtos" className="container-section py-16 sm:py-20">
         <div className="max-w-4xl">
-          <h2 className="section-title">Produtos mais procurados para personalizar sua marca</h2>
+          <h2 className="section-title">Produtos mais procurados</h2>
           <p className="section-subtitle">Escolha uma das opções abaixo e solicite um orçamento pelo WhatsApp.</p>
-          <p className="mt-4 rounded-2xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-bold text-green-800">{minimumOrderText}</p>
         </div>
         <div className="mt-10 grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => (
