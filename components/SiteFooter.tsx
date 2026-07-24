@@ -25,7 +25,7 @@ export function SiteFooter() {
         </div>
         <div className="text-sm text-slate-800">
           <p><strong>Endereço:</strong> Tv. Zenun, 102 - Centro, Campestre - MG</p>
-          <p><strong>WhatsApp:</strong> 35 3743 1554</p>
+          <p><strong>WhatsApp:</strong> 35 98864-0064</p>
           <p><strong>Domínio:</strong> www.mrmegamarca.com.br</p>
           <p><strong>CNPJ:</strong> 09.633.083/0001-20</p>
           <div className="mt-4 flex flex-wrap gap-4 font-semibold text-slate-900">
