@@ -10,7 +10,7 @@ export function SeoJsonLd() {
     image: "https://www.mrmegamarca.com.br/images/logo-mr-mega-marca.png",
     description:
       "Fornecedor de brindes personalizados, camisetas, uniformes, kits corporativos, canetas, chaveiros, sacochilas, squeezes e materiais promocionais para empresas, eventos e ações comerciais.",
-    telephone: "+55 35 3743-1554",
+    telephone: "+55 35 98864-0064",
     taxID: "09.633.083/0001-20",
     areaServed: {
       "@type": "Country",
